@@ -29,8 +29,8 @@
               <li class = "nav-item"><a class = "nav-link" href = "favourites.php"> Favourite List </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "orderhistory.html"> View All Order History </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "checkout.html"><img class="checkout" src="carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "checkout.html"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "home.html"> Log out </a></li>
             </ul>
           </div>

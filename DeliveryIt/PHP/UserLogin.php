@@ -67,7 +67,7 @@
         if (mysqli_num_rows($result) > 0)
         {
           $_SESSION['username']=$username;
-          header('location:UserPage.php');
+          header('location:../UserPage.php');
         }
         else
         {

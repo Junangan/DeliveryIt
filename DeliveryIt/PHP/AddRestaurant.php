@@ -54,7 +54,7 @@
         </nav>
     </header>
     <div class = "container">
-      <form action="add.html" method = "post"><br>
+      <form action="../AddRestaurant.html" method = "post"><br>
         <input type="submit" name="Submit" value="Thank You">
       </form>
     </div>
