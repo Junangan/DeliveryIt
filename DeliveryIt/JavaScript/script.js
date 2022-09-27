@@ -138,3 +138,135 @@ function Volunteer_Validate(){
 		return true;
 	}
 }
+
+function minusNum(){
+	var numberPlace = document.getElementById("numberPlace");
+	if(numberPlace.value==0){
+		var number = 0;
+	}
+	else{
+		var number = parseInt(numberPlace.value);
+	}
+	var min = 0;
+    if (number>min){
+        number = number-1; /// Minus 1 of the number   
+        numberPlace.value = number;
+    }
+    if(number == min) {        
+        numberPlace.style.color= "red";
+        setTimeout(function(){numberPlace.style.color= "black"},500)
+    }
+    else {
+      	numberPlace.style.color="black";            
+    }
+}
+
+function addNum(){
+	var numberPlace = document.getElementById("numberPlace");
+	if(numberPlace.value==0){
+		var number = 0;
+	}
+	else{
+		var number = parseInt(numberPlace.value);
+	}
+    number = number+1;
+    numberPlace.value = number;
+}
+
+function show() {
+  document.getElementById("myDropdown").classList.toggle("show");
+  if (document.getElementById("icon").className == "fa fa-angle-up"){
+  	document.getElementById("icon").className = "fa fa-angle-down"
+  }
+  else{
+  	document.getElementById("icon").className = "fa fa-angle-up";
+  }
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("allRestaurant");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+function sortListByName() {
+  show();
+  var list, i, switching, b, shouldSwitch;
+  list = document.getElementById("allRestaurant");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // start by saying: no switching is done:
+    switching = false;
+    b = list.getElementsByTagName("a");
+    // Loop through all list-items:
+    for (i = 0; i < (b.length); i++) {
+      // start by saying there should be no switching:
+      shouldSwitch = false;
+      /* check if the next item should
+      switch place with the current item: */
+      if (b[i].innerText.toLowerCase() > b[i + 1].innerText.toLowerCase()) {
+        /* if next item is alphabetically
+        lower than current item, mark as a switch
+        and break the loop: */
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+    }
+  }
+}
+
+function reverseSortListByName() {
+  show();
+  var list, i, switching, b, shouldSwitch;
+  list = document.getElementById("allRestaurant");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // start by saying: no switching is done:
+    switching = false;
+    b = list.getElementsByTagName("a");
+    // Loop through all list-items:
+    for (i = 0; i < (b.length); i++) {
+      // start by saying there should be no switching:
+      shouldSwitch = false;
+      /* check if the next item should
+      switch place with the current item: */
+      if (b[i].innerText.toLowerCase() < b[i + 1].innerText.toLowerCase()) {
+        /* if next item is alphabetically
+        lower than current item, mark as a switch
+        and break the loop: */
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+    }
+  }
+}
+
+function clearFilter(){
+	window.location.reload();
+}
