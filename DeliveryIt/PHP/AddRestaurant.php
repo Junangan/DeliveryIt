@@ -36,12 +36,33 @@
       $con->query($GetRestaurentQuery);
     }
     catch(Exception $e){
-      $CreateOwnerTableQuery = "CREATE TABLE restaurant(RestaurantId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255),FoodOrDrink VARCHAR(255) NOT NULL,Price integer(10) NOT NULL)";
+      $CreateOwnerTableQuery = "CREATE TABLE restaurant(RestaurantId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,ratingNumber integer(10),star integer(10))";
       $con->query($CreateOwnerTableQuery);
+      $CreateTableQuery = "CREATE TABLE foodandDrink(FoodId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,FoodOrDrinkName VARCHAR(255) NOT NULL,Price FLOAT(10) NOT NULL,RestaurantId integer REFERENCES restaurant(RestaurantId) )";
+      $con->query($CreateTableQuery);
     }
-    $sql = "INSERT INTO restaurant (RestaurantName, FoodOrDrink, Price)
-            VALUES ('$restaurantName', '$foodDrink', '$price')";
-    mysqli_query($con, $sql);
+
+    $GetRestaurentAndFoodQuery = "SELECT * from restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId WHERE restaurant.RestaurantName = '$restaurantName' AND foodandDrink.FoodOrDrinkName = '$foodDrink'";
+    $result =$con->query($GetRestaurentAndFoodQuery);
+    if($result->num_rows > 0){
+    }
+    else{
+      $GetRestaurentQuery = "SELECT * from restaurant WHERE RestaurantName = '$restaurantName'";
+      $result =$con->query($GetRestaurentQuery);
+      if($result->num_rows > 0){
+        $sql = "INSERT INTO foodandDrink (FoodOrDrinkName, Price,RestaurantId)
+            VALUES ('$foodDrink', '$price',(SELECT RestaurantId from restaurant WHERE RestaurantName='$restaurantName'))";
+        mysqli_query($con, $sql);
+      }
+      else{
+        $sql = "INSERT INTO restaurant (RestaurantName)
+            VALUES ('$restaurantName')";
+        mysqli_query($con, $sql);
+        $sql = "INSERT INTO foodandDrink (FoodOrDrinkName, Price,RestaurantId)
+            VALUES ('$foodDrink', '$price',(SELECT RestaurantId from restaurant WHERE RestaurantName='$restaurantName'))";
+        mysqli_query($con, $sql);
+      }
+    }
     mysqli_close($con);
     ?>
     <header id = "header" class = "clear">
