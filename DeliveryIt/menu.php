@@ -46,25 +46,32 @@
                 $conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
                 $RestaurantName = $_GET['Name'];
                 $_SESSION['restaurant'] = $RestaurantName;
-                $GetRestaurantQuery = "SELECT * from restaurant WHERE RestaurantName  =  '$RestaurantName' ";
+                $GetRestaurantQuery = "SELECT * from foodandDrink INNER JOIN restaurant ON restaurant.RestaurantId = foodandDrink.RestaurantId WHERE RestaurantName  =  '$RestaurantName' ";
                 $result = $conn->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
+                  $RestaurantNameLoop = true;
+                  $numRow = 0;
                   while($row = mysqli_fetch_assoc($result)) {
-                    echo "<div class='row justify-content-md-center'>
+                    $numRow+=1;
+                    if( $RestaurantNameLoop == true){
+                      echo "<div class='row justify-content-md-center'>
                             <h3 id='restaurantName'>{$row['RestaurantName']}</h3>
-                          </div>
+                          </div>";
+                      $RestaurantNameLoop = false;
+                    }
+                    echo "
                           <div class='food border p-3 row justify-content-between align-items-center'>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
-                              {$row['FoodOrDrink']}
+                              {$row['FoodOrDrinkName']}
                             </p>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
                               Price: RM{$row['Price']}
                             </p>
                             <form class='col-5' action='PHP/menuAdd.php' method = 'post' style='text-align:end;'>
-                              <input type='button' id='minus' value='-' onclick='minusNum()'>
-                              <input type='text' value='{$row['FoodOrDrink']}' id='FoodName' name='FoodName' style='display:none;'>
-                              <input type='text' value='0' name='numberPlace' id='numberPlace' style='width:50px;'>
-                              <input type='button' id='plus' value='+' onclick='addNum()'>
+                              <input type='button' id='minus' value='-' onclick='minusNum({$numRow})'>
+                              <input type='text' value='{$row['FoodOrDrinkName']}' id='FoodName' name='FoodName' style='display:none;'>
+                              <input type='text' value='0' name='numberPlace' id='{$numRow}' style='width:50px;'>
+                              <input type='button' id='plus' value='+' onclick='addNum({$numRow})'>
                               <input type='submit' value='Add to Cart'>
                             </form>
                           </div>
@@ -80,5 +87,8 @@
         <p> Copyright &copy; 2022 DeliveryIt. All Right Reserved. </p>
       </footer>
     </div>
+    <script type="text/javascript">
+      
+    </script>
   </body>
 </html>
