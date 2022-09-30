@@ -81,6 +81,10 @@
                           Total Price = RM';
                             echo ($cartPrice);
                          echo' </p>
+                          <div>
+                            <label for="date">Delivery Time:</label>
+                            <input type="datetime-local" id="date" name="date">
+                          </div>
                           <button type="submit" onclick="window.location.href="PHP/Checkout.php";">
                               Confirm  
                           </button>
@@ -99,5 +103,14 @@
         <p> Copyright &copy; 2022 DeliveryIt. All Right Reserved. </p>
       </footer>
     </div>
+    <script>
+      var d = new Date();
+        m = d.getMonth() + 1;
+        if(m<10){
+          m='0' + m;
+        }
+        nowTime = d.getFullYear()+"-"+m+"-"+d.getDate()+"T"+d.getHours()+":"+d.getMinutes();
+        document.getElementById('date').value=nowTime;
+    </script>
   </body>
 </html>
