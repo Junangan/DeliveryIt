@@ -28,11 +28,11 @@
         $con->query($GetOrderQuery);
     }
     catch(Exception $e){
-      $CreatefoodOwnerTableQuery = "CREATE TABLE UserOrder(OrderId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodName VARCHAR(255),FoodNumber  integer(10) NOT NULL,TotalPrice integer(10) NOT NULL,Status VARCHAR(255) NOT NULL,user VARCHAR(255) NOT NULL)";
+      $CreatefoodOwnerTableQuery = "CREATE TABLE UserOrder(OrderId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodName VARCHAR(255)NOT NULL,FoodNumber  integer(10) NOT NULL,TotalPrice float(10) NOT NULL,Status VARCHAR(255) NOT NULL,user VARCHAR(255) NOT NULL)";
       $con->query($CreatefoodOwnerTableQuery);
     }
 
-      $GetOrderQuery = "SELECT * from UserOrder WHERE FoodName=$FoodName AND RestaurantName=$RestaurantName AND user=$UserName";
+      $GetOrderQuery = "SELECT * from UserOrder WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user=$UserName";
       $result = $con->query($GetOrderQuery);
       if($result->num_rows > 0){
         $row = mysqli_fetch_assoc($result);
@@ -47,18 +47,25 @@
           </script>";
       }
       else{
-        $getFoodQuery = "SELECT * from restaurant WHERE FoodOrDrink=$FoodName AND RestaurantName=$RestaurantName";
+        $getFoodQuery = "SELECT * from restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId WHERE foodandDrink.FoodOrDrinkName='$FoodName' AND restaurant.RestaurantName='$RestaurantName'";
         $result = $con->query($getFoodQuery);
           if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            $Price = $row['Price'] * $FoodNumber;
-          $sql = "INSERT INTO UserOrder (RestaurantName,FoodName,FoodNumber,TotalPrice, Status,user) Values ('$RestaurantName','$FoodName', '$FoodNumber','$Price', '$status',$UserName)";
-            mysqli_query($con, $sql);
-            mysqli_close($con);
-            echo "<script>
+            if($FoodNumber != 0){
+              $Price = $row['Price'] * $FoodNumber;
+              $sql = "INSERT INTO UserOrder (RestaurantName,FoodName,FoodNumber,TotalPrice, Status,user) Values ('$RestaurantName','$FoodName', '$FoodNumber','$Price', '$status',$UserName)";
+                mysqli_query($con, $sql);
+                mysqli_close($con);
+                echo "<script>
               alert('Food Name $FoodName add $FoodNumber successfully');
               window.history.back();
               </script>";
+            }
+            else{
+              echo "<script>
+              window.history.back();
+              </script>";
+            }
         }
       }
 ?>
