@@ -139,8 +139,8 @@ function Volunteer_Validate(){
 	}
 }
 
-function minusNum(){
-	var numberPlace = document.getElementById("numberPlace");
+function minusNum(id){
+	var numberPlace = document.getElementById(id);
 	if(numberPlace.value==0){
 		var number = 0;
 	}
@@ -161,8 +161,8 @@ function minusNum(){
     }
 }
 
-function addNum(){
-	var numberPlace = document.getElementById("numberPlace");
+function addNum(id){
+	var numberPlace = document.getElementById(id);
 	if(numberPlace.value==0){
 		var number = 0;
 	}
