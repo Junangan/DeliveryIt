@@ -24,7 +24,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "bit304";
+    $dbname = "DeliveryIt";
     $con = new mysqli($servername, $username, $password, $dbname);
 
     $restaurantID=$_POST['restaurantID'];
@@ -37,13 +37,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "home.html"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "MainPage.html"> DeliveryIt </a>
             </div>
           </div>
         </nav>
     </header>
     <div class = "container">
-      <form action="manage.php" method = "post"><br>
+      <form action="ManageRestaurant.php" method = "post"><br>
         <input type="submit" name="Submit" value="Done">
       </form>
     </div>

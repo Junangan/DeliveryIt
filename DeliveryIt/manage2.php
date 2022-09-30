@@ -24,19 +24,17 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "bit304";
+    $dbname = "DeliveryIt";
     $con = new mysqli($servername, $username, $password, $dbname);
 
     $restaurantName=$_POST['restaurantName'];
-    $foodDrink=$_POST['foodDrink'];
-    $price=$_POST['price'];
     $restaurantID=$_POST['restaurantID'];
 
-    $sql = "SELECT RestaurantName, FoodOrDrink, Price FROM restaurant";
+    $sql = "SELECT RestaurantName, FoodOrDrink, Price FROM restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId";
     $sql = "SELECT * FROM restaurant";
     $sql = "SELECT * FROM restaurant WHERE RestaurantID = $restaurantID";
 
-    $sql = "UPDATE restaurant SET RestaurantName='$restaurantName',FoodOrDrink='$foodDrink',Price='$price' WHERE RestaurantID = $restaurantID";
+    $sql = "UPDATE restaurant SET RestaurantName='$restaurantName' WHERE RestaurantID = $restaurantID";
     mysqli_query($con, $sql);
     mysqli_close($con);
     ?>
@@ -44,13 +42,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "home.html"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "MainPage.html"> DeliveryIt </a>
             </div>
           </div>
         </nav>
     </header>
     <div class = "container">
-      <form action="manage.php" method = "post"><br>
+      <form action="ManageRestaurant.php" method = "post"><br>
         <input type="submit" name="Submit" value="Thank You">
       </form>
     </div>
