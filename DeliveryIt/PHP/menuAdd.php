@@ -38,7 +38,7 @@
         $row = mysqli_fetch_assoc($result);
         $newNumber = $row['FoodNumber'] + $FoodNumber;
         $Price = $row['TotalPrice'] /$row['FoodNumber'] * $newNumber;
-        $sql = "UPDATE UserOrder SET FoodNumber ='$newNumber' , TotalPrice ='$Price' WHERE FoodName=$FoodName AND RestaurantName=$RestaurantName AND user=$UserName";
+        $sql = "UPDATE UserOrder SET FoodNumber ='$newNumber' , TotalPrice ='$Price' WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user='$UserName'";
           mysqli_query($con, $sql);
           mysqli_close($con);
           echo "<script>
@@ -53,7 +53,7 @@
             $row = mysqli_fetch_assoc($result);
             if($FoodNumber != 0){
               $Price = $row['Price'] * $FoodNumber;
-              $sql = "INSERT INTO UserOrder (RestaurantName,FoodName,FoodNumber,TotalPrice, Status,user) Values ('$RestaurantName','$FoodName', '$FoodNumber','$Price', '$status',$UserName)";
+              $sql = "INSERT INTO UserOrder (RestaurantName,FoodName,FoodNumber,TotalPrice, Status,user) Values ('$RestaurantName','$FoodName', '$FoodNumber','$Price', '$status','$UserName')";
                 mysqli_query($con, $sql);
                 mysqli_close($con);
                 echo "<script>
