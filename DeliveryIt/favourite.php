@@ -21,37 +21,42 @@
   </head>
   <body>
     <?php
+    if(isset($_POST['List']))
+    {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "DeliveryIt";
+    $dbname = "deliveryit";
     $con = new mysqli($servername, $username, $password, $dbname);
+    if (!$con) {
+     die("Could not connect to database");
+    }
 
-    $restaurantName=$_POST['restaurantName'];
-    $foodDrink=$_POST['foodDrink'];
-    $price=$_POST['price'];
-    $restaurantID=$_POST['restaurantID'];
+    $RestaurantName;
+    $foodDrink = $_POST["foodDrink"];
+    $price;
 
-    $sql = "SELECT RestaurantName, FoodOrDrink, Price FROM restaurant";
-    $sql = "SELECT * FROM restaurant";
-    $sql = "SELECT * FROM restaurant WHERE RestaurantID = $restaurantID";
+    $sql = "INSERT INTO favourite (FoodOrDrink)
+            VALUES ('$foodDrink')";
 
-    $sql = "UPDATE restaurant SET RestaurantName='$restaurantName',FoodOrDrink='$foodDrink',Price='$price' WHERE RestaurantID = $restaurantID";
     mysqli_query($con, $sql);
     mysqli_close($con);
+    }
     ?>
+      </div>
+    </main>
     <header id = "header" class = "clear">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "OwnerPage.php"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "UserPage.php"> DeliveryIt </a>
             </div>
           </div>
         </nav>
     </header>
     <div class = "container">
-      <form action="ManageRestaurant.php" method = "post"><br>
-        <input type="submit" name="Submit" value="Thank You">
+      <form action="FavouriteList.php" method = "post"><br>
+        <input type="submit" name="Submit" value="Done">
       </form>
     </div>
 

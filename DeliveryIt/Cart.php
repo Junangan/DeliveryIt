@@ -27,11 +27,11 @@
             <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "UserPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "restaurant.php"> Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "favourites.php"> Favourite List </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> View All Order History </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "FavouriteList.php"> Favourite List </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "orderhistory.html"> View All Order History </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "Cart.php"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
+              <li class = "nav-item"><a class = "nav-link" href = ""><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
             </ul>
           </div>
@@ -50,19 +50,15 @@
                 $result = $conn->query($GetOrderQuery);
                 $cartPrice = '0';
                 if (mysqli_num_rows($result) > 0) {
-                  $RestaurantName = '';
                   while($row = mysqli_fetch_assoc($result)) {
                     $cartPrice +=$row['TotalPrice'];
-                    echo "<div>";
-                    if($RestaurantName!=$row['RestaurantName']){
-                      echo "<div>
+                    echo "<div>
+                            <div>
                               <p id='cartRestaurant'>
                                 {$row['RestaurantName']}
                               </p>
-                            </div>";
-                      $RestaurantName=$row['RestaurantName'];
-                    }
-                      echo " <div class='food row justify-content-between'>
+                            </div>
+                            <div class='food row justify-content-between'>
                               <p class='col-5'>
                                 {$row['FoodName']}
                               </p>
@@ -73,8 +69,8 @@
                                 RM{$row['TotalPrice']}
 
                               </p>
-                              <a class='col-2' href='PHP/orderCancel.php?Name={$row['FoodName']}'>
-                                'remove'        
+                              <a class='col-2' href='orderCancel.php?Name={$row['FoodName']}'>
+                                'remove'
                               </a>
                             </div>
                           </div>
@@ -85,12 +81,8 @@
                           Total Price = RM';
                             echo ($cartPrice);
                          echo' </p>
-                          <div>
-                            <label for="date">Delivery Time:</label>
-                            <input type="datetime-local" id="date" name="date">
-                          </div>
-                          <button type="submit" onclick="window.location.href="PHP/Checkout.php";">
-                              Confirm  
+                          <button type="submit" onclick="window.location.href="Checkout.php";">
+                              Confirm
                           </button>
                         </div>';
                 }
@@ -107,26 +99,5 @@
         <p> Copyright &copy; 2022 DeliveryIt. All Right Reserved. </p>
       </footer>
     </div>
-    <script>
-      var d = new Date();
-        m = d.getMonth() + 1;
-        mi = d.getMinutes();
-        day = d.getDate();
-        h = d.getHours();
-        if(m<10){
-          m='0' + m;
-        }
-        if(day<10){
-          day = '0' + day;
-        }
-        if(h<10){
-          h = '0' +h;
-        }
-        if(mi<10){
-          mi='0' + mi;
-        }
-        nowTime = d.getFullYear()+"-"+m+"-"+day+"T"+h+":"+mi;
-        document.getElementById('date').value=nowTime;
-    </script>
   </body>
 </html>

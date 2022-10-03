@@ -1,11 +1,11 @@
 
-<?php 
+<?php
 session_start();
 //declaration and initialization
 if(isset($_POST['submit'])){
 	$Password = $_POST['password'];
 	$Name = $_POST['fullName'];
-	$email =$_POST['email']; 
+	$email =$_POST['email'];
 	$PhoneNum = $_POST['phoneNumber'];
 
 	$SERVERNAME = "localhost";
@@ -57,11 +57,11 @@ if(isset($_POST['submit'])){
             <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "UserPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "restaurant.php"> Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "favourites.php"> Favourite List </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> View All Order History </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> Manage Profile </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "FavouriteList.php"> Favourite List </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "orderhistory.html"> View All Order History </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "Cart.php"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
             </ul>
           </div>
@@ -120,7 +120,7 @@ if(isset($_POST['submit'])){
 					</form>
 				</div>
 				<div class="back row">
-					<input type="button" class="btn btn-block col-4 offset-md-4" value="Back" onclick="document.location='home2.html'">
+					<input type="button" class="btn btn-block col-4 offset-md-4" value="Back" onclick="document.location='UserPage.php'">
 				</div>
 			</div>
 		</div>

@@ -27,16 +27,20 @@
     $dbname = "DeliveryIt";
     $con = new mysqli($servername, $username, $password, $dbname);
 
-    $restaurantName=$_POST['restaurantName'];
+    $RestaurantName=$_POST['restaurantName'];
     $foodDrink=$_POST['foodDrink'];
     $price=$_POST['price'];
-    $restaurantID=$_POST['restaurantID'];
 
-    $sql = "SELECT RestaurantName, FoodOrDrink, Price FROM restaurant";
-    $sql = "SELECT * FROM restaurant";
-    $sql = "SELECT * FROM restaurant WHERE RestaurantID = $restaurantID";
-
-    $sql = "UPDATE restaurant SET RestaurantName='$restaurantName',FoodOrDrink='$foodDrink',Price='$price' WHERE RestaurantID = $restaurantID";
+    try{
+      $GetRestaurentQuery = "SELECT * from restaurant";
+      $con->query($GetRestaurentQuery);
+    }
+    catch(Exception $e){
+      $CreateOwnerTableQuery = "CREATE TABLE restaurant(RestaurantID integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255),FoodOrDrink VARCHAR(255) NOT NULL,Price integer(10) NOT NULL)";
+      $con->query($CreateOwnerTableQuery);
+    }
+    $sql = "INSERT INTO restaurant (RestaurantName, FoodOrDrink, Price)
+            VALUES ('$RestaurantName', '$foodDrink', '$price')";
     mysqli_query($con, $sql);
     mysqli_close($con);
     ?>
@@ -50,7 +54,7 @@
         </nav>
     </header>
     <div class = "container">
-      <form action="ManageRestaurant.php" method = "post"><br>
+      <form action="AddRestaurant.html" method = "post"><br>
         <input type="submit" name="Submit" value="Thank You">
       </form>
     </div>

@@ -26,12 +26,13 @@
             <div class = "navbar-header">
               <a class = "navbar-brand" href = "OwnerPage.php"> DeliveryIt </a>
             </div>
-             <ul class = "nav navbar-nav navbar-left">
+            <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "OwnerPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "AddRestaurant.html"> Add Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> Manage Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> View All User Order Record </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "ManageRestaurant.php"> Manage Restaurant </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "userOrderRecord.html"> View All User Order Record </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageOwnerProfile.php"> Manage Profile </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
             </ul>
           </div>
@@ -53,7 +54,7 @@
          }
 
         //Step 2: Query
-        $sql = "SELECT * FROM restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId  WHERE restaurant.RestaurantId > 0";
+        $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
         $result = mysqli_query($con, $sql);
         ?>
         <div class = "container">
@@ -73,9 +74,9 @@
                 // output data of each row
                while($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
-                            <td>{$row['RestaurantId']}</td>
+                            <td>{$row['RestaurantID']}</td>
                             <td>{$row['RestaurantName']}</td>
-                            <td>{$row['FoodOrDrinkName']}</td>
+                            <td>{$row['FoodOrDrink']}</td>
                             <td>{$row['Price']}</td>
                           </tr>";
                 }
@@ -110,7 +111,7 @@
                 if (mysqli_num_rows($result) > 0) {
                   while($row = mysqli_fetch_assoc($result)) {
                     echo
-                    "<option>{$row['RestaurantId']}</option>";
+                    "<option>{$row['RestaurantID']}</option>";
                   }
                 }
                 else {
@@ -127,47 +128,7 @@
               <input type="text" class="form-control" id="restaurantName" placeholder="Enter restaurant name" name="restaurantName" required>
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-offset-4 col-md-10">
-              <input type="submit" class = "btn btn-success" name="Edit" value="Edit">
-            </div>
-          </div>
-        </form>
-        <br><br>
 
-        <h3> Edit Food Or drink </h3>
-        <form class="form-horizontal" action="PHP/mangeFood.php" method = "post">
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="fullname">FoodorDrink ID:</label>
-            <div class="col-sm-6">
-              <select name="foodID" id="foodID" required>
-                <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "DeliveryIt";
-                $con = new mysqli($servername, $username, $password, $dbname);
-                if (!$con) {
-                 die("Could not connect to database");
-                 }
-
-                $sql = "SELECT * FROM foodandDrink WHERE FoodId > 0";
-                $result = mysqli_query($con, $sql);
-                ?>
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                  while($row = mysqli_fetch_assoc($result)) {
-                    echo
-                    "<option>{$row['FoodId']}</option>";
-                  }
-                }
-                else {
-                  echo "";
-                }
-                ?>
-              </select>
-            </div>
-          </div>
           <div class="form-group">
             <label class="control-label col-md-2" for="foodDrink">Food/Drinks:</label>
             <div class="col-sm-6">
@@ -190,7 +151,6 @@
         </form>
         <br><br>
 
-
         <h3> Delete Restaurant </h3>
             <form class="form-horizontal" action="manage3.php" method = "post">
               <div class="form-group">
@@ -207,56 +167,14 @@
                      die("Could not connect to database");
                      }
 
-                    $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
+                    $sql = "SELECT * FROM restaurant WHERE RestaurantID > 0";
                     $result = mysqli_query($con, $sql);
                     ?>
                     <?php
                     if (mysqli_num_rows($result) > 0) {
                       while($row = mysqli_fetch_assoc($result)) {
                         echo
-                        "<option>{$row['RestaurantId']}</option>";
-                      }
-                    }
-                    else {
-                      echo "";
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-offset-4 col-md-10">
-                  <input type="submit" class = "btn btn-success" name="Delete" value="Delete">
-                </div>
-              </div>
-            </form>
-            <br><br>
-
-          <h3> Delete Food Or Drink </h3>
-            <form class="form-horizontal" action="PHP/DeleteFood.php" method = "post">
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="fullname">Restaurant ID:</label>
-                <div class="col-sm-6">
-                  <select name="foodID" id="foodID" required>
-                    <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "DeliveryIt";
-                    $con = new mysqli($servername, $username, $password, $dbname);
-                    if (!$con) {
-                     die("Could not connect to database");
-                     }
-
-                    $sql = "SELECT * FROM foodandDrink WHERE FoodId > 0";
-                    $result = mysqli_query($con, $sql);
-                    ?>
-                    <?php
-                    if (mysqli_num_rows($result) > 0) {
-                      while($row = mysqli_fetch_assoc($result)) {
-                        echo
-                        "<option>{$row['FoodId']}</option>";
+                        "<option>{$row['RestaurantID']}</option>";
                       }
                     }
                     else {

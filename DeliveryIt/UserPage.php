@@ -21,16 +21,16 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "#"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "UserPage.php"> DeliveryIt </a>
             </div>
             <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "UserPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "restaurant.php"> Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "favourites.php"> Favourite List </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> View All Order History </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "FavouriteList.php"> Favourite List </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "orderhistory.html"> View All Order History </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "Cart.php"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
             </ul>
           </div>
