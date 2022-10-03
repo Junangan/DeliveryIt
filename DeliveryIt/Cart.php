@@ -50,15 +50,19 @@
                 $result = $conn->query($GetOrderQuery);
                 $cartPrice = '0';
                 if (mysqli_num_rows($result) > 0) {
+                  $RestaurantName = '';
                   while($row = mysqli_fetch_assoc($result)) {
                     $cartPrice +=$row['TotalPrice'];
-                    echo "<div>
-                            <div>
+                    echo "<div>";
+                    if($RestaurantName!=$row['RestaurantName']){
+                      echo "<div>
                               <p id='cartRestaurant'>
                                 {$row['RestaurantName']}
                               </p>
-                            </div>
-                            <div class='food row justify-content-between'>
+                            </div>";
+                      $RestaurantName=$row['RestaurantName'];
+                    }
+                      echo " <div class='food row justify-content-between'>
                               <p class='col-5'>
                                 {$row['FoodName']}
                               </p>
@@ -106,10 +110,22 @@
     <script>
       var d = new Date();
         m = d.getMonth() + 1;
+        mi = d.getMinutes();
+        day = d.getDate();
+        h = d.getHours();
         if(m<10){
           m='0' + m;
         }
-        nowTime = d.getFullYear()+"-"+m+"-"+d.getDate()+"T"+d.getHours()+":"+d.getMinutes();
+        if(day<10){
+          day = '0' + day;
+        }
+        if(h<10){
+          h = '0' +h;
+        }
+        if(mi<10){
+          mi='0' + mi;
+        }
+        nowTime = d.getFullYear()+"-"+m+"-"+day+"T"+h+":"+mi;
         document.getElementById('date').value=nowTime;
     </script>
   </body>
