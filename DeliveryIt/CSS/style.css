@@ -278,3 +278,26 @@
 .show {display:block;}
 
 .hide {display: none;}
+
+.CheckOutbutton{
+  text-decoration: none;
+  width: 90px;
+  border: 1px solid black;
+  display: inline-block;
+  font-size: 18px;
+  height: 35px;
+  padding-top: 2px;
+  text-align: center;
+  transition: 0.3s;
+  color: black;
+  margin-right: 20px;
+}
+
+
+.CheckOutbutton:hover{
+  text-decoration: none;
+  padding-top: 3px;
+  color: black;
+  border: 0px solid #DCDCDC;
+  background-color: #DCDCDC;
+}

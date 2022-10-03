@@ -32,7 +32,7 @@
       $con->query($CreatefoodOwnerTableQuery);
     }
 
-      $GetOrderQuery = "SELECT * from UserOrder WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user=$UserName";
+      $GetOrderQuery = "SELECT * from UserOrder WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user=$UserName AND Status='$status'";
       $result = $con->query($GetOrderQuery);
       if($result->num_rows > 0){
         $row = mysqli_fetch_assoc($result);
