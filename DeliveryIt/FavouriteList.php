@@ -29,7 +29,7 @@
             <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "UserPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "restaurant.php"> Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "FavouriteList.php"> Favourite List </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "#"> Favourite List </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "orderhistory.html"> View All Order History </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "Cart.php"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
@@ -54,9 +54,7 @@
          die("Could not connect to database");
         }
 
-        $sql = "SELECT *
-                FROM restaurant
-                WHERE EXISTS (SELECT FoodOrDrink FROM favourite WHERE favourite.FoodOrDrink = restaurant.FoodOrDrink)";
+        $sql = "SELECT * from foodandDrink INNER JOIN restaurant ON restaurant.RestaurantId = foodandDrink.RestaurantId WHERE EXISTS (SELECT FoodOrDrink FROM favourite WHERE foodandDrink.FoodOrDrinkName = favourite.FoodOrDrink AND restaurant.restaurantName = favourite.restaurantName)";
 
         $result = mysqli_query($con, $sql);
         ?>
@@ -69,14 +67,14 @@
                           </div>
                           <div class='food border p-3 row justify-content-between align-items-center'>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
-                              {$row['FoodOrDrink']}
+                              {$row['FoodOrDrinkName']}
                             </p>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
                               Price: RM{$row['Price']}
                             </p>
                             <form class='col-5' action='menuAdd.php' method = 'post' style='text-align:end;'>
                               <input type='button' id='minus' value='-' onclick='minusNum()'>
-                              <input type='text' value='{$row['FoodOrDrink']}' id='FoodName' name='FoodName' style='display:none;'>
+                              <input type='text' value='{$row['FoodOrDrinkName']}' id='FoodName' name='FoodName' style='display:none;'>
                               <input type='text' value='0' name='numberPlace' id='numberPlace' style='width:50px;'>
                               <input type='button' id='plus' value='+' onclick='addNum()'>
                               <input type='submit' value='Add to Cart'>

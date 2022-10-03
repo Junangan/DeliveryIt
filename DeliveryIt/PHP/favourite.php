@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <link rel = "stylesheet" href = "/css/bootstrap.min.css">
-    <link rel= "stylesheet" href="style.css">
+    <link rel= "stylesheet" href="CSS/style.css">
     <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "js/bootstrap.min.js"></script>
     <style type = "text/css">
@@ -34,10 +34,20 @@
 
     $RestaurantName;
     $foodDrink = $_POST["foodDrink"];
+    $RestaurantName = $_SESSION['restaurant'];
     $price;
 
-    $sql = "INSERT INTO favourite (FoodOrDrink)
-            VALUES ('$foodDrink')";
+    try{
+        $GetOrderQuery = "SELECT * from Favourite";
+        $con->query($GetOrderQuery);
+    }
+    catch(Exception $e){
+      $CreateTableQuery = "CREATE TABLE Favourite(FavouriteId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodOrDrink VARCHAR(255) NOT NULL)";
+      $con->query($CreateTableQuery);
+    }
+
+    $sql = "INSERT INTO favourite (RestaurantName,FoodOrDrink)
+            VALUES ('$RestaurantName','$foodDrink')";
 
     mysqli_query($con, $sql);
     mysqli_close($con);
@@ -49,13 +59,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "UserPage.php"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "../UserPage.php"> DeliveryIt </a>
             </div>
           </div>
         </nav>
     </header>
     <div class = "container">
-      <form action="FavouriteList.php" method = "post"><br>
+      <form action="../FavouriteList.php" method = "post"><br>
         <input type="submit" name="Submit" value="Done">
       </form>
     </div>

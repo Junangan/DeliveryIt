@@ -21,10 +21,10 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "OwnerPage.php"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "#"> DeliveryIt </a>
             </div>
             <ul class = "nav navbar-nav navbar-left">
-              <li class = "nav-item"><a class = "nav-link" href = "OwnerPage.php"> Home </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "#"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "AddRestaurant.html"> Add Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageRestaurant.php"> Manage Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "userOrderRecord.html"> View All User Order Record </a></li>

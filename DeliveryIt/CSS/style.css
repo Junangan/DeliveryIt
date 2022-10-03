@@ -164,31 +164,27 @@
   font-size: 14px;
 }
 
-.restaurantDiv{
-  display: inline-block;
+
+.restaurantLink{
   text-decoration: none;
   margin-top: 25px;
   width: 45%;
   height: 75px;
-}
-
-.restaurantLink{
   border: 1px solid black;
   display: inline-block;
   height: 75px;
   transition: 0.3s;
-  width: 70%;
 }
 
 .restaurantName{
   height:75px;
   padding-top:22.5px;
+  padding-left: 10px;
   text-align:center;
   display: inline-block;
   color:blue;
   font-size:20px;
   color:black;
-  width: 175px;
 }
 
 .restaurantLink:hover{
@@ -198,20 +194,6 @@
   background-color: #DCDCDC;
 }
 
-.addFavourite{
-  height: 100%;
-  width: 20%;
-  display: inline-block;
-  padding-left: 10px;
-  color: #D3D3D3;
-  font-size: 40px;
-  font-weight: 100;
-}
-
-.addFavourite:hover{
-  text-decoration: none;
-  color: black;
-}
 
 #restaurantName{
   display: inline-block;
