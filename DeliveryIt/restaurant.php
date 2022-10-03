@@ -49,8 +49,8 @@
 	      	  <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-</svg>
+				  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+				</svg>
               </span>
               <input type="text" class="form-control" placeholder="Search Restaurant or Food" aria-label="Input group example" aria-describedby="basic-addon1" id="myInput" onkeyup="filterFunction()">
             </div>
@@ -65,16 +65,42 @@
 	    <div class="container">
         <div id="allRestaurant" class="row justify-content-between">
           <?php
-                $conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
+                $con = new mysqli ('localhost', 'root', '',"DeliveryIt");
+                try{
+				        $GetOrderQuery = "SELECT * from Favourite";
+				        $con->query($GetOrderQuery);
+				    }
+				    catch(Exception $e){
+				      $CreateTableQuery = "CREATE TABLE Favourite(FavouriteId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL)";
+				      $con->query($CreateTableQuery);
+				    }
                 $GetRestaurantQuery = "SELECT * from restaurant";
-                $result = $conn->query($GetRestaurantQuery);
+                $result = $con->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
                   while($row = mysqli_fetch_assoc($result)) {
-                    echo "<a class='restaurantLink' href='menu.php?Name={$row['RestaurantName']}'>
-                    		<div class='restaurantName'>
-                            {$row['RestaurantName']}
-                            </div>
-                          </a>";
+                    echo "<div class='restaurantDiv'>
+                    		  <a class='restaurantLink' href='menu.php?Name={$row['RestaurantName']}'>
+	                    		<div class='restaurantName'>
+	                            {$row['RestaurantName']}
+	                            </div>
+	                          </a>";
+				    $CheckQuery = "SELECT * from Favourite where RestaurantName='{$row['RestaurantName']}'";
+				    $Fresult = $con->query($CheckQuery);
+	                if($Fresult->num_rows > 0){
+	                	echo"<a class='addFavourite' href='PHP/removeFavourite.php?Name={$row['RestaurantName']}'>
+	                          	<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='black' class='bi bi-star-fill' viewBox='0 0 16 16'>
+								  <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/>
+								</svg>
+	                          </a>";
+	                }
+	                else{
+	                	echo"<a class='addFavourite' href='PHP/addFavourite.php?Name={$row['RestaurantName']}'>
+	                          	<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-star-fill' viewBox='0 0 16 16'>
+								  <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/>
+								</svg>
+	                          </a>";
+	                }
+					echo"</div>";
                   }
                 }
           ?>
