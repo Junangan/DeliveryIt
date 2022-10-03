@@ -66,13 +66,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "MainPage.html"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "../MainPage.html"> DeliveryIt </a>
             </div>
           </div>
         </nav>
     </header>
     <div class = "container">
-      <form action="MainPage.html" method = "post"><br>
+      <form action="../MainPage.html" method = "post"><br>
         <input type="submit" name="Submit" value="Thank You">
       </form>
     </div>

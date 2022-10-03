@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "MainPage.html"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "../MainPage.html"> DeliveryIt </a>
             </div>
           </div>
         </nav>
@@ -83,7 +83,7 @@
     ?>
     </div>
     <div class = "container">
-      <form action="OwnerLogin.html" method = "post"><br>
+      <form action="../OwnerLogin.html" method = "post"><br>
         <input type="submit" name="Back" value="Back">
       </form>
     </div>

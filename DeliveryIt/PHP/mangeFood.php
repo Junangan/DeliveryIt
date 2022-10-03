@@ -46,7 +46,7 @@
         </nav>
     </header>
     <div class = "container">
-      <form action="ManageRestaurant.php" method = "post"><br>
+      <form action="../ManageRestaurant.php" method = "post"><br>
         <input type="submit" name="Submit" value="Thank You">
       </form>
     </div>
