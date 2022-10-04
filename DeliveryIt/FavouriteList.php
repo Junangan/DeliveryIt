@@ -54,9 +54,12 @@
          die("Could not connect to database");
         }
 
+        $RestaurantName = $_SESSION['restaurant'];
+
         $sql = "SELECT *
-                FROM foodanddrink
-                WHERE EXISTS (SELECT FoodOrDrinkName FROM favourite WHERE favourite.FoodOrDrinkName = foodanddrink.FoodOrDrinkName)";
+                FROM ((foodanddrink
+                INNER JOIN restaurant ON restaurant.RestaurantId = foodandDrink.RestaurantId)
+                INNER JOIN favourite ON favourite.FoodOrDrinkName = foodanddrink.FoodOrDrinkName)";
 
         $result = mysqli_query($con, $sql);
         ?>
@@ -64,7 +67,10 @@
         <?php
                 if (mysqli_num_rows($result) > 0) {
                   while($row = mysqli_fetch_assoc($result)) {
-                    echo "<div class='food border p-3 row justify-content-between align-items-center'>
+                    echo "<div class='row justify-content-md-center'>
+                          <h3 id='restaurantName'>{$row['RestaurantName']}</h3>
+                        </div>
+                    <div class='food border p-3 row justify-content-between align-items-center'>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
                               {$row['FoodOrDrinkName']}
                             </p>

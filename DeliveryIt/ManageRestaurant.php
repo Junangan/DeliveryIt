@@ -238,7 +238,7 @@
           <h3> Delete Food Or Drink </h3>
             <form class="form-horizontal" action="PHP/DeleteFood.php" method = "post">
               <div class="form-group">
-                <label class="control-label col-sm-2" for="fullname">Restaurant ID:</label>
+                <label class="control-label col-sm-2" for="fullname">Food ID:</label>
                 <div class="col-sm-6">
                   <select name="foodID" id="foodID" required>
                     <?php
