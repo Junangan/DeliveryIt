@@ -61,6 +61,7 @@
           <thead>
             <tr>
               <th>Restaurant ID</th>
+              <th>Food ID</th>
               <th>Restaurant Name</th>
               <th>Name of food or drink</th>
               <th>Price</th>
@@ -74,6 +75,7 @@
                while($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
                             <td>{$row['RestaurantId']}</td>
+                            <td>{$row['FoodId']}</td>
                             <td>{$row['RestaurantName']}</td>
                             <td>{$row['FoodOrDrinkName']}</td>
                             <td>{$row['Price']}</td>

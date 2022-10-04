@@ -66,14 +66,6 @@
         <div id="allRestaurant" class="row justify-content-between">
           <?php
                 $con = new mysqli ('localhost', 'root', '',"DeliveryIt");
-                try{
-				        $GetOrderQuery = "SELECT * from Favourite";
-				        $con->query($GetOrderQuery);
-				    }
-				    catch(Exception $e){
-				      $CreateTableQuery = "CREATE TABLE Favourite(FavouriteId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL)";
-				      $con->query($CreateTableQuery);
-				    }
                 $GetRestaurantQuery = "SELECT * from restaurant";
                 $result = $con->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
