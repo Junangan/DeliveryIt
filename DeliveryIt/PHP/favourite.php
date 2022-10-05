@@ -21,8 +21,6 @@
   </head>
   <body>
     <?php
-    if(isset($_POST['List']))
-    {
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -34,25 +32,25 @@
 
     $RestaurantName;
     $foodDrink = $_POST["foodDrink"];
-    $RestaurantName = $_SESSION['restaurant'];
     $price;
 
-    try{
-        $GetOrderQuery = "SELECT * from Favourite";
-        $con->query($GetOrderQuery);
-    }
-    catch(Exception $e){
-      $CreateTableQuery = "CREATE TABLE Favourite(FavouriteId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodOrDrink VARCHAR(255) NOT NULL)";
-      $con->query($CreateTableQuery);
-    }
+    $CheckOwnerQuery = "SELECT * from favourite where FoodOrDrinkName='$foodDrink'";
 
-    $sql = "INSERT INTO favourite (RestaurantName,FoodOrDrink)
-            VALUES ('$RestaurantName','$foodDrink')";
-
-    mysqli_query($con, $sql);
-    mysqli_close($con);
-    }
+    $result = $con->query($CheckOwnerQuery);
+        if($result->num_rows > 0){
+          echo "<script>
+          alert('The name of the food or drink is duplicate , please choose another food or drink');
+          window.location.href='../restaurant.php';
+          </script>";
+        }
+        else{
+           $sql = "INSERT INTO favourite (FoodOrDrinkName)
+                   VALUES ('$foodDrink')";
+            mysqli_query($con, $sql);
+            mysqli_close($con);
+        }
     ?>
+
       </div>
     </main>
     <header id = "header" class = "clear">
