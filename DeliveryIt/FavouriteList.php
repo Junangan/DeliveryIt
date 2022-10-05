@@ -77,7 +77,7 @@
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
                               Price: RM{$row['Price']}
                             </p>
-                            <form class='col-5' action='menuAdd.php' method = 'post' style='text-align:end;'>
+                            <form class='col-5' action='PHP/menuAdd.php' method = 'post' style='text-align:end;'>
                               <input type='button' id='minus' value='-' onclick='minusNum()'>
                               <input type='text' value='{$row['FoodOrDrinkName']}' id='FoodName' name='FoodName' style='display:none;'>
                               <input type='text' value='0' name='numberPlace' id='numberPlace' style='width:50px;'>
