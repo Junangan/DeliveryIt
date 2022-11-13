@@ -48,6 +48,11 @@
                    VALUES ('$foodDrink')";
             mysqli_query($con, $sql);
             mysqli_close($con);
+
+            echo "<script>
+            alert('1 item has been added to the favourite list');
+            window.location.href='../FavouriteList.php';
+            </script>";
         }
     ?>
 
