@@ -45,7 +45,7 @@
             $conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
             $RestaurantName = $_GET['Name'];
             $_SESSION['restaurant'] = $RestaurantName;
-            $GetRestaurantQuery = "SELECT * from foodandDrink INNER JOIN restaurant ON restaurant.RestaurantId = foodandDrink.RestaurantId WHERE RestaurantName  =  '$RestaurantName' ";
+            $GetRestaurantQuery = "SELECT * from foodanddrink INNER JOIN restaurant ON restaurant.RestaurantId = foodanddrink.RestaurantId WHERE RestaurantName  =  '$RestaurantName' ";
             $result = $conn->query($GetRestaurantQuery);
             echo "<h3>Menu</h3>
             <form class='form-horizontal' action='PHP/favourite.php' method = 'post'>
@@ -71,7 +71,7 @@
                 $conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
                 $RestaurantName = $_GET['Name'];
                 $_SESSION['restaurant'] = $RestaurantName;
-                $GetRestaurantQuery = "SELECT * from foodandDrink INNER JOIN restaurant ON restaurant.RestaurantId = foodandDrink.RestaurantId WHERE RestaurantName  =  '$RestaurantName' ";
+                $GetRestaurantQuery = "SELECT * from foodanddrink INNER JOIN restaurant ON restaurant.RestaurantId = foodanddrink.RestaurantId WHERE RestaurantName  =  '$RestaurantName'";
                 $result = $conn->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
                   $RestaurantNameLoop = true;
@@ -84,8 +84,7 @@
                           </div>";
                       $RestaurantNameLoop = false;
                     }
-                    echo "
-                          <div class='food border p-3 row justify-content-between align-items-center'>
+                    echo "<div class='food border p-3 row justify-content-between align-items-center'>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
                               {$row['FoodOrDrinkName']}
                             </p>

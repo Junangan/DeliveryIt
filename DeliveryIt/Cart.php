@@ -46,7 +46,7 @@
                 session_start();
                 $conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
                 $UserName = $_SESSION['username'];
-                $GetOrderQuery = "SELECT * from userOrder WHERE user  =  '$UserName' And status ='pending' ";
+                $GetOrderQuery = "SELECT * from userorder WHERE user  =  '$UserName' And Status ='pending' ";
                 $result = $conn->query($GetOrderQuery);
                 $cartPrice = '0';
                 if (mysqli_num_rows($result) > 0) {
@@ -74,7 +74,7 @@
 
                               </p>
                               <a class='col-2' href='PHP/orderCancel.php?Name={$row['FoodName']}'>
-                                'remove'        
+                                'remove'
                               </a>
                             </div>
                           </div>
@@ -90,7 +90,7 @@
                             <input type="datetime-local" id="date" name="date">
                           </div>
                           <a class="CheckOutbutton" href="PHP/Checkout.php">
-                              Confirm  
+                              Confirm
                           </a>
                         </div>';
                 }
