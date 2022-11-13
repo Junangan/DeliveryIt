@@ -42,8 +42,8 @@
     </header>
     <br><br>
     <section class="page-section" id="contact">
-      <div class = "container"><br><br><br>
-        <h2> Favourite List </h2><br>
+        <div class = "container">
+          <h2> Favourite List </h2>
         <?php
         $servername = "localhost";
         $username = "root";
@@ -84,11 +84,15 @@
                               <input type='button' id='plus' value='+' onclick='addNum()'>
                               <input type='submit' value='Add to Cart'>
                             </form>
+                            <a href='PHP/DeleteFavourite.php?Name={$row['FoodOrDrinkName']}'>
+                            'Remove from Favourite List'
+                            </a>
                           </div>
                           ";
                   }
                 }
           ?>
+        </div>
 
     </section>
 

@@ -34,12 +34,28 @@
     $foodDrink = $_POST["foodDrink"];
     $price;
 
-    $sql = "INSERT INTO favourite (FoodOrDrinkName)
-            VALUES ('$foodDrink')";
+    $CheckOwnerQuery = "SELECT * from favourite where FoodOrDrinkName='$foodDrink'";
 
-    mysqli_query($con, $sql);
-    mysqli_close($con);
+    $result = $con->query($CheckOwnerQuery);
+        if($result->num_rows > 0){
+          echo "<script>
+          alert('The name of the food or drink is duplicate , please choose another food or drink');
+          window.location.href='../restaurant.php';
+          </script>";
+        }
+        else{
+           $sql = "INSERT INTO favourite (FoodOrDrinkName)
+                   VALUES ('$foodDrink')";
+            mysqli_query($con, $sql);
+            mysqli_close($con);
+
+            echo "<script>
+            alert('1 item has been added to the favourite list');
+            window.location.href='../FavouriteList.php';
+            </script>";
+        }
     ?>
+
       </div>
     </main>
     <header id = "header" class = "clear">
