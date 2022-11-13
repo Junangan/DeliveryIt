@@ -24,21 +24,21 @@
 
     //using try to check the table is create or no,if no then will create the relate table
     try{
-        $GetOrderQuery = "SELECT * from UserOrder";
+        $GetOrderQuery = "SELECT * from userorder";
         $con->query($GetOrderQuery);
     }
     catch(Exception $e){
-      $CreatefoodOwnerTableQuery = "CREATE TABLE UserOrder(OrderId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodName VARCHAR(255)NOT NULL,FoodNumber  integer(10) NOT NULL,TotalPrice float(10) NOT NULL,Status VARCHAR(255) NOT NULL,user VARCHAR(255) NOT NULL)";
+      $CreatefoodOwnerTableQuery = "CREATE TABLE userorder(OrderId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodName VARCHAR(255)NOT NULL,FoodNumber  integer(10) NOT NULL,TotalPrice float(10) NOT NULL,Status VARCHAR(255) NOT NULL,user VARCHAR(255) NOT NULL)";
       $con->query($CreatefoodOwnerTableQuery);
     }
 
-      $GetOrderQuery = "SELECT * from UserOrder WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user='$UserName' AND Status='$status'";
+      $GetOrderQuery = "SELECT * from userorder WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user='$UserName' AND Status='$status'";
       $result = $con->query($GetOrderQuery);
       if($result->num_rows > 0){
         $row = mysqli_fetch_assoc($result);
         $newNumber = $row['FoodNumber'] + $FoodNumber;
         $Price = $row['TotalPrice'] /$row['FoodNumber'] * $newNumber;
-        $sql = "UPDATE UserOrder SET FoodNumber ='$newNumber' , TotalPrice ='$Price' WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user='$UserName'";
+        $sql = "UPDATE userorder SET FoodNumber ='$newNumber' , TotalPrice ='$Price' WHERE FoodName='$FoodName' AND RestaurantName='$RestaurantName' AND user='$UserName'";
           mysqli_query($con, $sql);
           mysqli_close($con);
           echo "<script>
@@ -47,13 +47,13 @@
           </script>";
       }
       else{
-        $getFoodQuery = "SELECT * from restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId WHERE foodandDrink.FoodOrDrinkName='$FoodName' AND restaurant.RestaurantName='$RestaurantName'";
+        $getFoodQuery = "SELECT * from restaurant INNER JOIN foodanddrink ON restaurant.RestaurantId = foodanddrink.RestaurantId WHERE foodanddrink.FoodOrDrinkName='$FoodName' AND restaurant.RestaurantName='$RestaurantName'";
         $result = $con->query($getFoodQuery);
           if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             if($FoodNumber != 0){
               $Price = $row['Price'] * $FoodNumber;
-              $sql = "INSERT INTO UserOrder (RestaurantName,FoodName,FoodNumber,TotalPrice, Status,user) Values ('$RestaurantName','$FoodName', '$FoodNumber','$Price', '$status','$UserName')";
+              $sql = "INSERT INTO userorder (RestaurantName,FoodName,FoodNumber,TotalPrice, Status,user) Values ('$RestaurantName','$FoodName', '$FoodNumber','$Price', '$status','$UserName')";
                 mysqli_query($con, $sql);
                 mysqli_close($con);
                 echo "<script>

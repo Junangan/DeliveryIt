@@ -17,9 +17,9 @@
 
     $FoodName=$_GET['Name'];
 
-    $GetOrderQuery = "SELECT * from UserOrder";
+    $GetOrderQuery = "SELECT * from userorder";
     $con->query($GetOrderQuery);
-    $sql = "DELETE FROM UserOrder WHERE FoodName = '$FoodName' ";
+    $sql = "DELETE FROM userorder WHERE FoodName = '$FoodName' ";
               mysqli_query($con, $sql);
               mysqli_close($con);
 

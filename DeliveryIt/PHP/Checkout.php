@@ -15,15 +15,13 @@
         $con->select_db("DeliveryIt");
     }
 
-    $FoodName=$_POST['FoodName'];
-    $FoodNumber=$_POST['numberPlace'];
     $status = 'pending';
     $UserName = $_SESSION['username'];
 
     // $GetOrderQuery = "SELECT * from userOrder WHERE user  =  '$UserName' And status ='pending' ";
     // $result = $conn->query($GetOrderQuery);
 
-    $sql = "UPDATE UserOrder SET status ='Complete' WHERE user  =  '$UserName' And status ='pending' ";
+    $sql = "UPDATE userorder SET Status ='Complete' WHERE user  =  '$UserName' And Status ='pending' ";
     mysqli_query($con, $sql);
     mysqli_close($con);
 
