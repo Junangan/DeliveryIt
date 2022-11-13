@@ -52,10 +52,10 @@
       $password=$_POST['password'];
 
       //using try to check the table is create or no,if no then will create the relate table
-    $GetOwnerQuery = "SELECT * from Owner";
+    $GetOwnerQuery = "SELECT * from owner";
     $result = $con->query($GetOwnerQuery);
     if(!$result){
-      $CreateOwnerTableQuery = "CREATE TABLE Owner(username VARCHAR(255) PRIMARY KEY,password VARCHAR(255) NOT NULL,Fullname VARCHAR(255) NOT NULL,email VARCHAR(255) NOT NULL,phone integer(12) NOT NULL)";
+      $CreateOwnerTableQuery = "CREATE TABLE owner(username VARCHAR(255) PRIMARY KEY,password VARCHAR(255) NOT NULL,Fullname VARCHAR(255) NOT NULL,email VARCHAR(255) NOT NULL,phone integer(12) NOT NULL)";
       $con->query($CreateOwnerTableQuery);
     }
 
@@ -71,13 +71,19 @@
         }
         else
         {
-          echo'Username not found and invalid password';
+          echo"<script>
+          alert('Username not found and invalid password');
+          window.location.href='OwnerLogin.html';
+          </script>";
         }
       }
 
       else
       {
-        echo'Enter both username and password';
+        echo"<script>
+        alert('Enter both username and password');
+        window.location.href='OwnerLogin.html';
+        </script>";
       }
     }
     ?>

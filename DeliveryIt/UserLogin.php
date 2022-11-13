@@ -71,13 +71,19 @@
         }
         else
         {
-          echo'Username not found and invalid password';
+          echo "<script>
+          alert('Username not found and invalid password');
+          window.location.href='UserLogin.html';
+          </script>";
         }
       }
 
       else
       {
-        echo'Enter both username and password';
+        echo "<script>
+        alert('Enter both username and password');
+        window.location.href='UserLogin.html';
+        </script>";
       }
     }
     ?>

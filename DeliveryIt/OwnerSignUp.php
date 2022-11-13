@@ -1,25 +1,6 @@
 <?php
   session_start();
 ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name = "viewport" content = "width = device-width initial-scale = 1">
-    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
-    <link rel = "stylesheet" href = "/css/bootstrap.min.css">
-    <link rel= "stylesheet" href="style.css">
-    <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src = "js/bootstrap.min.js"></script>
-    <style type = "text/css">
-      ul{
-        padding: 10px;
-      }
-    </style>
-    <title> DeliveryIt </title>
-  </head>
-  <body>
     <?php
     $servername = "localhost";
     $username = "root";
@@ -27,12 +8,12 @@
     $con = new mysqli($servername, $username, $password);
 
     try{
-    	$con->select_db("DeliveryIt");
+    	$con->select_db("deliveryIt");
     }
     catch(Exception $e){
-    	$CreateDatabase = "CREATE DATABASE DeliveryIt";
+    	$CreateDatabase = "CREATE DATABASE deliveryIt";
       	$con->query($CreateDatabase);
-      	$con->select_db("DeliveryIt");
+      	$con->select_db("deliveryIt");
     }
 
     $username=$_POST['username'];
@@ -40,14 +21,14 @@
 
     //using try to check the table is create or no,if no then will create the relate table
     try{
-    	$GetOwnerQuery = "SELECT * from Owner";
+    	$GetOwnerQuery = "SELECT * from owner";
     	$con->query($GetOwnerQuery);
     }
     catch(Exception $e){
-    	$CreateOwnerTableQuery = "CREATE TABLE Owner(username VARCHAR(255) PRIMARY KEY,password VARCHAR(255) NOT NULL,Fullname VARCHAR(255) NOT NULL,email VARCHAR(255) NOT NULL,phone integer(12) NOT NULL)";
+    	$CreateOwnerTableQuery = "CREATE TABLE owner(Username VARCHAR(255) PRIMARY KEY,Password VARCHAR(255) NOT NULL,Fullname VARCHAR(255) NOT NULL,Email VARCHAR(255) NOT NULL,Phone integer(12) NOT NULL)";
       	$con->query($CreateOwnerTableQuery);
     }
-    $CheckOwnerQuery = "SELECT * from Owner where username='$username'";
+    $CheckOwnerQuery = "SELECT * from owner where Username='$username'";
     $result = $con->query($CheckOwnerQuery);
         if($result->num_rows > 0){
           echo "<script>
@@ -56,31 +37,13 @@
           </script>";
         }
         else{
-           $sql = "INSERT INTO Owner (Username, Password)
+           $sql = "INSERT INTO owner (Username, Password)
             VALUES ('$username', '$password')";
             mysqli_query($con, $sql);
             mysqli_close($con);
+            echo "<script>
+            alert('1 owner has been registered');
+            window.location.href='MainPage.html';
+            </script>";
         }
     ?>
-    <header id = "header" class = "clear">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class = "container-fluid">
-            <div class = "navbar-header">
-              <a class = "navbar-brand" href = "MainPage.html"> DeliveryIt </a>
-            </div>
-          </div>
-        </nav>
-    </header>
-    <div class = "container">
-      <form action="MainPage.html" method = "post"><br>
-        <input type="submit" name="Submit" value="Thank You">
-      </form>
-    </div>
-
-    <div class="container">
-      <footer id = "footer" class = "clear">
-        <h5> Copyright &copy; 2022 DeliveryIt. All Right Reserved. </h5>
-      </footer>
-    </div>
-  </body>
-</html>

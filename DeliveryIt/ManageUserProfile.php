@@ -23,11 +23,11 @@ if(isset($_POST['submit'])){
 
 
 	$UserName = $_SESSION['username'];
-	$GetUserQuery = "SELECT * from User WHERE username='$UserName'";
+	$GetUserQuery = "SELECT * from user WHERE Username='$UserName'";
 	$result = $conn->query($GetUserQuery);
 	$row = $result->fetch_assoc();
-	if($Password!= $row['password'] || $Name!= $row['Fullname'] || $email!= $row['email'] || $PhoneNum!= $row['phone']){
-		$UpdateProfitQuery = "UPDATE User SET password='$Password' , Fullname='$Name' ,email='$email', phone='$PhoneNum' WHERE username='$UserName'";
+	if($Password!= $row['Password'] || $Name!= $row['Fullname'] || $email!= $row['Email'] || $PhoneNum!= $row['Phone']){
+		$UpdateProfitQuery = "UPDATE user SET Password='$Password' , Fullname='$Name' ,Email='$email', Phone='$PhoneNum' WHERE Username='$UserName'";
 		$conn->query($UpdateProfitQuery);
 	}
 	echo "<script>
@@ -84,11 +84,11 @@ if(isset($_POST['submit'])){
 									echo'<div>
 											<div class="form-group row">
 													<label for="NewVolunteername">Username:</label>
-													<input class="form-control" type="text" name="username" id="NewVolunteername" placeholder="Enter username" value="'.$row["username"].'" disabled="true">
+													<input class="form-control" type="text" name="username" id="NewVolunteername" placeholder="Enter username" value="'.$row["Username"].'" disabled="true">
 												</div>
 												<div class="form-group row">
 													<label for="NewVolunteerpassword">Password:</label>
-													<input class="form-control" type="password" name="password" id="NewVolunteerpassword" placeholder="Enter password" value="'.$row["password"].'" required>
+													<input class="form-control" type="password" name="password" id="NewVolunteerpassword" placeholder="Enter password" value="'.$row["Password"].'" required>
 												    <div class="custom-control">
 													   	<input type="checkbox" id="showPassword" class="form-check-input" onclick="ManageProfitshowPassword()">
 														<label class="form-check-label" for="showPassword">Show Password</label>
@@ -100,11 +100,11 @@ if(isset($_POST['submit'])){
 												</div>
 												<div class="form-group row">
 													<label for="NewVolunteerFullname">Email:</label>
-													<input class="form-control" type="text" name="email" id="email" placeholder="Enter email" value="'.$row["email"].'" required>
+													<input class="form-control" type="text" name="email" id="email" placeholder="Enter email" value="'.$row["Email"].'" required>
 												</div>
 												<div class="form-group row">
 													<label for="NewVolunteerPhoneNumber">Phone:</label>
-													<input class="form-control" type="text" name="phoneNumber" id="NewVolunteerPhoneNumber" placeholder="Enter phone number" value="'.$row["phone"].'" required>
+													<input class="form-control" type="text" name="phoneNumber" id="NewVolunteerPhoneNumber" placeholder="Enter phone number" value="'.$row["Phone"].'" required>
 												</div>
 											</div>'
 											?>
