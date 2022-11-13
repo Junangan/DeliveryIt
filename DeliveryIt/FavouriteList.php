@@ -85,7 +85,7 @@
                               <input type='submit' value='Add to Cart'>
                             </form>
                             <a href='PHP/DeleteFavourite.php?Name={$row['FoodOrDrinkName']}'>
-                            'Remove from Favourite List'
+                            Remove from Favourite List
                             </a>
                           </div>
                           ";
