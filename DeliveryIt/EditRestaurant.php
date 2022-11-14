@@ -29,7 +29,7 @@
              <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "OwnerPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "AddRestaurant.html"> Add Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> Manage Restaurant </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "ManageRestaurant.php"> Manage Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "#"> View All User Order Record </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageOwnerProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
@@ -53,16 +53,18 @@
          }
 
         //Step 2: Query
-        $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
+        $sql = "SELECT * FROM restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId  WHERE restaurant.RestaurantId > 0";
         $result = mysqli_query($con, $sql);
         ?>
         <div class = "container">
         <table border="1">
           <thead>
             <tr>
-              <th>Image</th>
               <th>Restaurant ID</th>
+              <th>Food ID</th>
               <th>Restaurant Name</th>
+              <th>Name of food or drink</th>
+              <th>Price</th>
             </tr>
           </thead>
           <tbody>
@@ -72,9 +74,11 @@
                 // output data of each row
                while($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
-                            <td><img src = Picture/{$row['Image']} height='110', width='110'></td>
-                            <td>{$row['RestaurantId']}</td>
-                            <td>{$row['RestaurantName']}</td>
+                    <td>{$row['RestaurantId']}</td>
+                    <td>{$row['FoodId']}</td>
+                    <td>{$row['RestaurantName']}</td>
+                    <td>{$row['FoodOrDrinkName']}</td>
+                    <td>{$row['Price']}</td>
                           </tr>";
                 }
 
@@ -84,85 +88,59 @@
             ?>
           </tbody>
       </table>
-      <br><br>
-
-      <?php
-      //Step 1: Connect to database
-      $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $dbname = "DeliveryIt";
-      $con = new mysqli($servername, $username, $password, $dbname);
-      if (!$con) {
-       die("Could not connect to database");
-       }
-
-      //Step 2: Query
-      $sql = "SELECT * FROM foodanddrink WHERE FoodId > 0";
-      $result = mysqli_query($con, $sql);
-      ?>
-      <div class = "container">
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Food ID</th>
-            <th>Name of food or drink</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          //Step 3: Display result
-          if (mysqli_num_rows($result) > 0) {
-              // output data of each row
-             while($row = mysqli_fetch_assoc($result)) {
-                  echo "<tr>
-                          <td>{$row['FoodId']}</td>
-                          <td>{$row['FoodOrDrinkName']}</td>
-                          <td>{$row['Price']}</td>
-                        </tr>";
-              }
-
-          } else {
-              echo "";
-          }
-          ?>
-        </tbody>
-    </table>
     </div><br><br>
-    <div class = "row justify-content-md-center">
-      <form class="form-horizontal" action="EditRestaurant.php" method = "post">
-        <div class="form-group">
-          <div class="col-sm-offset-4 col-md-10">
-            <input type="submit" class = "btn btn-success" name="Edit Restaurant" value="Edit Restaurant">
-          </div>
-        </div>
-      </form>
+    <h3> Edit Restaurant </h3>
+        <form class="form-horizontal" action="manage2.php" method = "post">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="fullname">Restaurant ID:</label>
+            <div class="col-sm-6">
+              <select name="restaurantID" id="restaurantID" required>
+                <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "DeliveryIt";
+                $con = new mysqli($servername, $username, $password, $dbname);
+                if (!$con) {
+                 die("Could not connect to database");
+                 }
 
-      <form class="form-horizontal" action="editfoodordrink.php" method = "post">
-        <div class="form-group">
-          <div class="col-sm-offset-4 col-md-10">
-            <input type="submit" class = "btn btn-success" name="Edit Food/Drink" value="Edit Food/Drink">
+                $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
+                $result = mysqli_query($con, $sql);
+                ?>
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                  while($row = mysqli_fetch_assoc($result)) {
+                    echo
+                    "<option>{$row['RestaurantId']}</option>";
+                  }
+                }
+                else {
+                  echo "";
+                }
+                ?>
+              </select>
+            </div>
           </div>
-        </div>
-      </form>
 
-      <form class="form-horizontal" action="deletefoodordrink.php" method = "post">
-        <div class="form-group">
-          <div class="col-sm-offset-4 col-md-10">
-            <input type="submit" class = "btn btn-success" name="Delete Food/Drink" value="Delete Food/Drink">
+          <div class="form-group">
+            <label class="control-label col-md-2" for="restaurantName">Restaurant Name:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="restaurantName" placeholder="Enter restaurant name" name="restaurantName" required>
+            </div>
           </div>
-        </div>
-      </form>
-
-      <form class="form-horizontal" action="DeleteRestaurant.php" method = "post">
-        <div class="form-group">
-          <div class="col-sm-offset-4 col-md-10">
-            <input type="submit" class = "btn btn-success" name="Delete Restaurant" value="Delete Restaurant">
+          <div class="form-group">
+            <label class="control-label col-md-2" for="image">Upload an image:</label>
+            <div class="col-sm-6">
+              <input type="file" id="image" name="image" required>
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-md-10">
+              <input type="submit" class = "btn btn-success" name="Edit" value="Edit">
+            </div>
+          </div>
+        </form>
         <br><br>
     </section>
     <div>
