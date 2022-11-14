@@ -63,13 +63,14 @@
 			</div>
 	    </div>
 	    <div class="container">
-        <div id="allRestaurant" class="row justify-content-between">
+        <div id="allRestaurant">
           <?php
                 $con = new mysqli ('localhost', 'root', '',"DeliveryIt");
                 $GetRestaurantQuery = "SELECT * from restaurant";
                 $result = $con->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
                   while($row = mysqli_fetch_assoc($result)) {
+                    echo "<img src = Picture/{$row['Image']} height='55', width='55'>";
                     echo "<a class='restaurantLink' href='menu.php?Name={$row['RestaurantName']}'>
 	                    		<div class='restaurantName'>
 	                            {$row['RestaurantName']}
