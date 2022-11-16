@@ -9,8 +9,7 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <link rel = "stylesheet" href = "/css/bootstrap.min.css">
-    <link rel= "stylesheet" href="CSS/style.css">
-    <script type="text/javascript" src="JavaScript/script.js"></script>
+    <link rel= "stylesheet" href="style.css">
     <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "js/bootstrap.min.js"></script>
     <style type = "text/css">
@@ -41,7 +40,7 @@
     <br><br>
     <section class="page-section" id="contact">
       <div class = "container"><br>
-        <h2> Manage Restaurant </h2>
+        <h3> Edit Restaurant </h3>
         <?php
         //Step 1: Connect to database
         $servername = "localhost";
@@ -54,44 +53,39 @@
          }
 
         //Step 2: Query
-        $sql = "SELECT * FROM restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId  WHERE restaurant.RestaurantId > 0";
+        $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
         $result = mysqli_query($con, $sql);
         ?>
         <div class = "container">
-        <table border="1">
-          <thead>
-            <tr>
-              <th>Restaurant ID</th>
-              <th>Food ID</th>
-              <th>Restaurant Name</th>
-              <th>Name of food or drink</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            //Step 3: Display result
-            if (mysqli_num_rows($result) > 0) {
-                // output data of each row
-               while($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>
-                    <td>{$row['RestaurantId']}</td>
-                    <td>{$row['FoodId']}</td>
-                    <td>{$row['RestaurantName']}</td>
-                    <td>{$row['FoodOrDrinkName']}</td>
-                    <td>{$row['Price']}</td>
-                          </tr>";
-                }
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Restaurant ID</th>
+                <th>Restaurant Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              //Step 3: Display result
+              if (mysqli_num_rows($result) > 0) {
+                  // output data of each row
+                 while($row = mysqli_fetch_assoc($result)) {
+                      echo "<tr>
+                              <td><img src = Picture/{$row['RestaurantImage']} height='110', width='110'></td>
+                              <td>{$row['RestaurantId']}</td>
+                              <td>{$row['RestaurantName']}</td>
+                            </tr>";
+                  }
 
-            } else {
-                echo "";
-            }
-            ?>
-          </tbody>
-      </table>
+              } else {
+                  echo "";
+              }
+              ?>
+            </tbody>
+        </table>
     </div><br><br>
-    <h3> Edit Restaurant </h3>
-        <form class="form-horizontal" action="PHP/manage2.php" method = "post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="PHP/manage2.php" method = "post">
           <div class="form-group">
             <label class="control-label col-sm-2" for="fullname">Restaurant ID:</label>
             <div class="col-sm-6">
@@ -131,11 +125,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md" for="formFile">Restaurant Image(optional):</label>
+            <label class="control-label col-md-2" for="restaurantImage">Upload an image:</label>
             <div class="col-sm-6">
-              <input type="file" class="custom-file-input" name="restaurantfile" id="customFile" onchange="readURL(this,'restaurant');">
-              <label class="custom-file-label" for="customFile">Choose file</label>
-              <img id="restaurant" src="#" alt="your image" style="display: none"/>
+              <input type="file" id="restaurantImage" name="restaurantImage" required>
             </div>
           </div>
           <div class="form-group">

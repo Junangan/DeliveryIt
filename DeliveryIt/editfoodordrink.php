@@ -9,8 +9,7 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <link rel = "stylesheet" href = "/css/bootstrap.min.css">
-    <link rel= "stylesheet" href="CSS/style.css">
-    <script type="text/javascript" src="JavaScript/script.js"></script>
+    <link rel= "stylesheet" href="style.css">
     <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "js/bootstrap.min.js"></script>
     <style type = "text/css">
@@ -41,7 +40,7 @@
     <br><br>
     <section class="page-section" id="contact">
       <div class = "container"><br>
-        <h2> Manage Restaurant </h2>
+        <h3> Edit Food Or drink </h3>
         <?php
         //Step 1: Connect to database
         $servername = "localhost";
@@ -54,16 +53,15 @@
          }
 
         //Step 2: Query
-        $sql = "SELECT * FROM restaurant INNER JOIN foodandDrink ON restaurant.RestaurantId = foodandDrink.RestaurantId  WHERE restaurant.RestaurantId > 0";
+        $sql = "SELECT * FROM foodanddrink WHERE FoodId > 0";
         $result = mysqli_query($con, $sql);
         ?>
         <div class = "container">
         <table border="1">
           <thead>
             <tr>
-              <th>Restaurant ID</th>
+              <th>Image</th>
               <th>Food ID</th>
-              <th>Restaurant Name</th>
               <th>Name of food or drink</th>
               <th>Price</th>
             </tr>
@@ -75,11 +73,10 @@
                 // output data of each row
                while($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
-                            <td>{$row['RestaurantId']}</td>
+                            <td><img src = Picture/{$row['FoodOrDrinkImage']} height='110', width='110'></td>
                             <td>{$row['FoodId']}</td>
-                            <td>{$row['RestaurantName']}</td>
                             <td>{$row['FoodOrDrinkName']}</td>
-                            <td>{$row['Price']}</td>
+                            <td>RM {$row['Price']}</td>
                           </tr>";
                 }
 
@@ -90,8 +87,7 @@
           </tbody>
       </table>
     </div><br><br>
-        <h3> Edit Food Or drink </h3>
-        <form class="form-horizontal" action="PHP/manageFood.php" method = "post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="PHP/manageFood.php" method = "post">
           <div class="form-group">
             <label class="control-label col-sm-2" for="fullname">Food/Drink ID:</label>
             <div class="col-sm-6">
@@ -131,18 +127,16 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-md" for="formFile">Food Or Drink Image(optional):</label>
+            <label class="control-label col-md-2" for="price">Price:</label>
             <div class="col-sm-6">
-              <input type="file" class="custom-file-input" name="foodOrDrinkfile" id="customFile" onchange="readURL(this,'foodOrDrink');">
-              <label class="custom-file-label" for="customFile">Choose file</label>
-              <img id="foodOrDrink" src="#" alt="your image" style="display: none;"/>
+              <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" required>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="control-label col-md-2" for="price">Price:</label>
+            <label class="control-label col-md-4" for="foodOrDrinkImage">Upload an image for the food/drink:</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" required>
+              <input type="file" id="foodOrDrinkImage" name="foodOrDrinkImage" required>
             </div>
           </div>
 

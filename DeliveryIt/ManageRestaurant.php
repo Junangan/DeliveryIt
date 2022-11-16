@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <link rel = "stylesheet" href = "/css/bootstrap.min.css">
-    <link rel= "stylesheet" href="CSS/style.css">
+    <link rel= "stylesheet" href="style.css">
     <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "js/bootstrap.min.js"></script>
     <style type = "text/css">
@@ -29,7 +29,7 @@
              <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "OwnerPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "AddRestaurant.html"> Add Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> Manage Restaurant </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = ""> Manage Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "UserOrderRecord.php"> View All User Order Record </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageOwnerProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
@@ -54,17 +54,7 @@
 
         //Step 2: Query
         $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
-        try{
-          $result = mysqli_query($con, $sql);
-        }
-        catch(Exception $e){
-          $CreateOwnerTableQuery = "CREATE TABLE restaurant(RestaurantId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,ratingNumber integer(10),star integer(10))";
-          $con->query($CreateOwnerTableQuery);
-          $CreateTableQuery = "CREATE TABLE foodanddrink(FoodId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,FoodOrDrinkName VARCHAR(255) NOT NULL,Price DECIMAL(10,2) NOT NULL,RestaurantId integer REFERENCES restaurant(RestaurantId) )";
-          $con->query($CreateTableQuery);
-          $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
-          $result = mysqli_query($con, $sql);
-        }
+        $result = mysqli_query($con, $sql);
         ?>
         <div class = "container">
         <table border="1">
@@ -82,7 +72,7 @@
                 // output data of each row
                while($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
-                            <td><img src = Picture/{$row['image']} height='110', width='110'></td>
+                            <td><img src = Picture/{$row['RestaurantImage']} height='110', width='110'></td>
                             <td>{$row['RestaurantId']}</td>
                             <td>{$row['RestaurantName']}</td>
                           </tr>";
@@ -115,6 +105,7 @@
       <table border="1">
         <thead>
           <tr>
+            <th>Image</th>
             <th>Food ID</th>
             <th>Name of food or drink</th>
             <th>Price</th>
@@ -127,9 +118,10 @@
               // output data of each row
              while($row = mysqli_fetch_assoc($result)) {
                   echo "<tr>
+                          <td><img src = Picture/{$row['FoodOrDrinkImage']} height='110', width='110'></td>
                           <td>{$row['FoodId']}</td>
                           <td>{$row['FoodOrDrinkName']}</td>
-                          <td>{$row['Price']}</td>
+                          <td>RM {$row['Price']}</td>
                         </tr>";
               }
 

@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <link rel = "stylesheet" href = "/css/bootstrap.min.css">
-    <link rel= "stylesheet" href="CSS/style.css">
+    <link rel= "stylesheet" href="style.css">
     <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "js/bootstrap.min.js"></script>
     <style type = "text/css">
@@ -57,31 +57,33 @@
         $result = mysqli_query($con, $sql);
         ?>
         <div class = "container">
-        <table border="1">
-          <thead>
-            <tr>
-              <th>Restaurant ID</th>
-              <th>Restaurant Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            //Step 3: Display result
-            if (mysqli_num_rows($result) > 0) {
-                // output data of each row
-               while($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>
-                            <td>{$row['RestaurantId']}</td>
-                            <td>{$row['RestaurantName']}</td>
-                          </tr>";
-                }
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Restaurant ID</th>
+                <th>Restaurant Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              //Step 3: Display result
+              if (mysqli_num_rows($result) > 0) {
+                  // output data of each row
+                 while($row = mysqli_fetch_assoc($result)) {
+                      echo "<tr>
+                              <td><img src = Picture/{$row['RestaurantImage']} height='110', width='110'></td>
+                              <td>{$row['RestaurantId']}</td>
+                              <td>{$row['RestaurantName']}</td>
+                            </tr>";
+                  }
 
-            } else {
-                echo "";
-            }
-            ?>
-          </tbody>
-      </table>
+              } else {
+                  echo "";
+              }
+              ?>
+            </tbody>
+        </table>
     </div><br><br>
             <form class="form-horizontal" action="PHP/manage3.php" method = "post">
               <div class="form-group">

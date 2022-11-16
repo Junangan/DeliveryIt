@@ -85,6 +85,7 @@
                       $RestaurantNameLoop = false;
                     }
                     echo "<div class='food border p-3 row justify-content-between align-items-center'>
+                            <img src = Picture/{$row['FoodOrDrinkImage']} height='170', width='236'>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
                               {$row['FoodOrDrinkName']}
                             </p>

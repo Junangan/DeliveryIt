@@ -70,7 +70,7 @@
                 $result = $con->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
                   while($row = mysqli_fetch_assoc($result)) {
-                    echo "<img src = Picture/{$row['image']} height='55', width='55'>";
+                    echo "<img src = Picture/{$row['RestaurantImage']} height='55', width='55'>";
                     echo "<a class='restaurantLink' href='menu.php?Name={$row['RestaurantName']}'>
 	                    		<div class='restaurantName'>
 	                            {$row['RestaurantName']}
