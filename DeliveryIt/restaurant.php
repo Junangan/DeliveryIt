@@ -32,7 +32,7 @@
               <li class = "nav-item"><a class = "nav-link" href = "UserPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "#"> Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "FavouriteList.php"> Favourite List </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> View All Order History </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "OrderHistory.php"> View All Order History </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "Cart.php"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "#"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
@@ -70,7 +70,7 @@
                 $result = $con->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
                   while($row = mysqli_fetch_assoc($result)) {
-                    echo "<img src = Picture/{$row['Image']} height='55', width='55'>";
+                    echo "<img src = Picture/{$row['image']} height='55', width='55'>";
                     echo "<a class='restaurantLink' href='menu.php?Name={$row['RestaurantName']}'>
 	                    		<div class='restaurantName'>
 	                            {$row['RestaurantName']}

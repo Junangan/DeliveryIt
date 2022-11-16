@@ -44,6 +44,7 @@ if(isset($_POST['submit'])){
 		<meta charset="UTF-8">
 		<title>Manage Profit</title>
 	    <script type="text/javascript" src="JavaScript/script.js"></script>
+		<link rel= "stylesheet" href="CSS/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	</head>
@@ -58,7 +59,7 @@ if(isset($_POST['submit'])){
               <li class = "nav-item"><a class = "nav-link" href = "OwnerPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "AddRestaurant.html"> Add Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageRestaurant.php"> Manage Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> View All User Order Record </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "UserOrderRecord.php"> View All User Order Record </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "#"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
@@ -66,13 +67,13 @@ if(isset($_POST['submit'])){
           </div>
         </nav>
     </header>
-		<div class="body">
+		<div>
 			<div class="container">
 				<div class="header">
 					<h1>Manage Profile</h1>
 				</div>
 				<div id="manageProfileForm">
-					<form action="" method="Post" onsubmit="return Volunteer_Validate()" enctype="multipart/form-data">
+					<form action="" method="Post" onsubmit="return Owner_Validate()" enctype="multipart/form-data">
 						<div>
 							<?php
 								$conn = new mysqli ('localhost', 'root', '',"DeliveryIt");

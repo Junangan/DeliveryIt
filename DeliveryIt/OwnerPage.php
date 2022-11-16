@@ -6,7 +6,7 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <link rel = "stylesheet" href = "/css/bootstrap.min.css">
-    <link rel= "stylesheet" href="style.css">
+    <link rel= "stylesheet" href="CSS/style.css">
     <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "js/bootstrap.min.js"></script>
     <style type = "text/css">
@@ -27,7 +27,7 @@
               <li class = "nav-item"><a class = "nav-link" href = "#"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "AddRestaurant.html"> Add Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageRestaurant.php"> Manage Restaurant </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "userOrderRecord.html"> View All User Order Record </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "UserOrderRecord.php"> View All User Order Record </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageOwnerProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>

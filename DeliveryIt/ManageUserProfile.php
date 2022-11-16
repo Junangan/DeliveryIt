@@ -44,6 +44,7 @@ if(isset($_POST['submit'])){
 		<meta charset="UTF-8">
 		<title>Manage Profit</title>
 	    <script type="text/javascript" src="JavaScript/script.js"></script>
+    	<link rel= "stylesheet" href="CSS/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	</head>
@@ -58,7 +59,7 @@ if(isset($_POST['submit'])){
               <li class = "nav-item"><a class = "nav-link" href = "UserPage.php"> Home </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "restaurant.php"> Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "FavouriteList.php"> Favourite List </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> View All Order History </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "OrderHistory.php"> View All Order History </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "Cart.php"><img class="checkout" src="Picture/carticon.png" alt="Cart Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "#"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
@@ -73,7 +74,7 @@ if(isset($_POST['submit'])){
 					<h1>Manage Profile</h1>
 				</div>
 				<div id="manageProfileForm">
-					<form action="" method="Post" onsubmit="return Volunteer_Validate()" enctype="multipart/form-data">
+					<form action="" method="Post" onsubmit="return Owner_Validate()" enctype="multipart/form-data">
 						<div>
 							<?php
 								$conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
