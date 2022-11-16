@@ -1,12 +1,3 @@
-.body{
-  background-color: #B8FF99;
-  background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
-  display       : grid;
-  align-content: center;
-  min-height    : 700px;
-}
-
-
 .vertical-space {height: 25px;}
 
 .button-rounded {border-radius: 5px;}
@@ -57,15 +48,6 @@
   box-shadow: 0px 0px 50px #8EF6F0;
 }
 
-#manageProfileForm{
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  background-color: #C2F9F6;
-  box-shadow: 0px 0px 50px #8EF6F0;
-}
-
 .form label, #loginForm label,#manageProfileForm label{
   font-size: 20px;
   margin: 0px;
@@ -77,7 +59,6 @@
 
 .form input, #loginForm input,#manageProfileForm input{
   font-size: 20px;
-  padding-left: 3%;
 }
 
 .button{
@@ -85,7 +66,7 @@
 }
 
 .button .btn{
-  border: 3px solid #666666;
+  border: 1px solid #666666;
   border-radius: 0px;
   font-family: "Open Sans";
   font-size: 26px;
@@ -102,10 +83,17 @@
 }
 
 .back .btn{
-  border: 3px solid #666666;
+  border: 1px solid #666666;
   border-radius: 0px;
   font-size: 16px;
   font-weight: 400;
+  transform: 0.3s;
+}
+
+.back .btn:hover{
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
+  transform: 0.3s;
 }
 
 .navTitle {
@@ -275,29 +263,57 @@
 
 .dropdown-content a:hover {background-color: #D4D4D4}
 
+.cartRestaurant{
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.address{
+  margin: 0px 10px 0px 10px;
+}
+
 .show {display:block;}
 
 .hide {display: none;}
 
 .CheckOutbutton{
   text-decoration: none;
-  width: 90px;
-  border: 1px solid black;
+  width: 100%;
   display: inline-block;
-  font-size: 18px;
-  height: 35px;
-  padding-top: 2px;
+  font-size: 24px;
   text-align: center;
   transition: 0.3s;
   color: black;
-  margin-right: 20px;
 }
 
 
 .CheckOutbutton:hover{
   text-decoration: none;
-  padding-top: 3px;
   color: black;
   border: 0px solid #DCDCDC;
   background-color: #DCDCDC;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+table{
+  width: 100%;
+}
+
+tbody{
+  text-align: center;
+  padding: 15px;
+}
+
+tr, th, td{
+  text-align: center;
+  height: 60px;
+  width: 1000px;
 }
