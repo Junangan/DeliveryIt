@@ -87,7 +87,7 @@ function Login_Validate(){
 }
 
 
-function Volunteer_Validate(){
+function Owner_Validate(){
 	var whitespace = /\s/g;
 	var NumOrSpecialChar = /[^A-z^\s]/g;
 	if(document.getElementById('NewVolunteername').value.match(whitespace)!=null || 
@@ -109,29 +109,6 @@ function Volunteer_Validate(){
 	else if(isNaN(document.getElementById('NewVolunteerPhoneNumber').value)==true){
 		alert('The Phone Number only can be number, please enter again!');
 		document.getElementById('NewVolunteerPhoneNumber').value = '';
-		return false;
-	}
-	else if(document.getElementById('DocumentUpload').disabled==false){
-		var image = document.getElementById('image').files[0];
-        if (image.size/1024 >= 3096) {
-            alert("File too Big, please select a file less than 3mb");
-            return false;
-        }
-	}
-	else if(document.getElementById('CredentialType').value == "" && 
-		document.getElementById('VolunteerCredential').value != "" &&
-			isNaN(document.getElementById('VolunteerCredential').value)==false){
-		alert('You must select credential type!');
-		document.getElementById('CredentialType').value = "";
-		document.getElementById('VolunteerCredential').value = "";
-		return false;
-	}
-	else if(document.getElementById('CredentialType').value != "" && 
-		(document.getElementById('VolunteerCredential').value == "" ||
-			isNaN(document.getElementById('VolunteerCredential').value)==true)){
-		alert('You must enter credential number! (Only can enter number)');
-		document.getElementById('CredentialType').value = "";
-		document.getElementById('VolunteerCredential').value = '';
 		return false;
 	}
 	else{
@@ -270,3 +247,22 @@ function reverseSortListByName() {
 function clearFilter(){
 	window.location.reload();
 }
+
+
+function readURL(input,imageType) {
+   if (input.files && input.files[0]) {
+   	var reader = new FileReader();
+	reader.onload = function (e) {
+    	if(imageType == 'restaurant'){
+           $('#restaurant').attr('src', e.target.result).width('50%').height('50%');
+           $('#restaurant').css('display','inline-block');
+        }
+        else{
+            $('#foodOrDrink').attr('src', e.target.result).width('50%').height('50%');
+            $('#foodOrDrink').css('display','inline-block');
+        }
+    };
+
+    reader.readAsDataURL(input.files[0]);
+    }
+ }
