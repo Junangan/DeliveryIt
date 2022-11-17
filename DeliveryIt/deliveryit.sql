@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 07:21 PM
+-- Generation Time: Nov 17, 2022 at 09:04 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -38,8 +38,8 @@ CREATE TABLE `favourite` (
 --
 
 INSERT INTO `favourite` (`FavouriteID`, `FoodOrDrinkName`) VALUES
-(29, 'Chicken'),
-(30, 'Pizza');
+(32, 'Spaghetti'),
+(33, 'Chicken');
 
 -- --------------------------------------------------------
 
@@ -51,6 +51,7 @@ CREATE TABLE `foodanddrink` (
   `FoodId` int(255) NOT NULL,
   `FoodOrDrinkName` text NOT NULL,
   `Price` double(10,2) NOT NULL,
+  `FoodOrDrinkImage` blob NOT NULL,
   `RestaurantId` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,11 +59,11 @@ CREATE TABLE `foodanddrink` (
 -- Dumping data for table `foodanddrink`
 --
 
-INSERT INTO `foodanddrink` (`FoodId`, `FoodOrDrinkName`, `Price`, `RestaurantId`) VALUES
-(28, 'Chicken', 5.00, 19),
-(29, 'Milo', 1.00, 19),
-(30, 'Spaghetti', 20.00, 20),
-(31, 'Pizza', 20.00, 20);
+INSERT INTO `foodanddrink` (`FoodId`, `FoodOrDrinkName`, `Price`, `FoodOrDrinkImage`, `RestaurantId`) VALUES
+(36, 'Chicken', 1.00, 0x6b66632e706e67, 23),
+(39, 'Pizza', 1.00, 0x70697a7a616875742e706e67, 25),
+(44, 'Honey Chicken', 1.00, 0x6b796f63686f6e2e706e67, 30),
+(50, 'Caramel Macchiato', 1.00, 0x737461726275636b732e706e67, 35);
 
 -- --------------------------------------------------------
 
@@ -100,16 +101,18 @@ CREATE TABLE `restaurant` (
   `RestaurantName` text NOT NULL,
   `ratingNumber` int(255) NOT NULL,
   `star` int(255) NOT NULL,
-  `Image` blob NOT NULL
+  `RestaurantImage` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `restaurant`
 --
 
-INSERT INTO `restaurant` (`RestaurantId`, `RestaurantName`, `ratingNumber`, `star`, `Image`) VALUES
-(19, 'KFC', 0, 0, 0x6b66632e706e67),
-(20, 'Pizza Hut', 0, 0, 0x70697a7a616875742e706e67);
+INSERT INTO `restaurant` (`RestaurantId`, `RestaurantName`, `ratingNumber`, `star`, `RestaurantImage`) VALUES
+(23, 'KFC', 0, 0, 0x6b66632e706e67),
+(25, 'Pizza Hut', 0, 0, 0x70697a7a616875742e706e67),
+(30, 'Kyochon', 0, 0, 0x6b796f63686f6e2e706e67),
+(35, 'Starbucks', 0, 0, 0x737461726275636b732e706e67);
 
 -- --------------------------------------------------------
 
@@ -146,16 +149,18 @@ CREATE TABLE `userorder` (
   `FoodNumber` int(255) NOT NULL,
   `TotalPrice` double(10,2) NOT NULL,
   `Status` text NOT NULL,
-  `user` text NOT NULL
+  `user` text NOT NULL,
+  `Rating` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userorder`
 --
 
-INSERT INTO `userorder` (`OrderId`, `RestaurantName`, `FoodName`, `FoodNumber`, `TotalPrice`, `Status`, `user`) VALUES
-(14, 'KFC', 'Chicken', 1, 5.00, 'pending', 'Grace'),
-(15, 'Pizza Hut', 'Pizza', 1, 20.00, 'pending', 'Grace');
+INSERT INTO `userorder` (`OrderId`, `RestaurantName`, `FoodName`, `FoodNumber`, `TotalPrice`, `Status`, `user`, `Rating`) VALUES
+(51, 'KFC', 'Chicken', 2, 2.00, 'Complete', 'Grace', 5),
+(52, 'Pizza Hut', 'Pizza', 1, 1.00, 'Complete', 'Grace', 0),
+(53, 'KFC', 'Chicken', 1, 1.00, 'Complete', 'Grace', 0);
 
 --
 -- Indexes for dumped tables
@@ -193,25 +198,25 @@ ALTER TABLE `userorder`
 -- AUTO_INCREMENT for table `favourite`
 --
 ALTER TABLE `favourite`
-  MODIFY `FavouriteID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `FavouriteID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `foodanddrink`
 --
 ALTER TABLE `foodanddrink`
-  MODIFY `FoodId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `FoodId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `RestaurantId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `RestaurantId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `userorder`
 --
 ALTER TABLE `userorder`
-  MODIFY `OrderId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `OrderId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
