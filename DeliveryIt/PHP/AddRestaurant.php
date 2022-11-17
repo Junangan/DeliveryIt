@@ -25,7 +25,11 @@
       $con->query($CreateTableQuery);
     }
 
-    $GetRestaurentAndFoodQuery = "SELECT * from restaurant INNER JOIN foodanddrink ON restaurant.RestaurantId = foodanddrink.RestaurantId WHERE restaurant.RestaurantName = '$restaurantName' AND foodanddrink.FoodOrDrinkName = '$foodDrink'";
+    $GetRestaurentAndFoodQuery = "SELECT * from restaurant
+                                  INNER JOIN foodanddrink
+                                  ON restaurant.RestaurantId = foodanddrink.RestaurantId
+                                  WHERE restaurant.RestaurantName = '$restaurantName'
+                                  AND foodanddrink.FoodOrDrinkName = '$foodDrink'";
     $result =$con->query($GetRestaurentAndFoodQuery);
     if($result->num_rows > 0){
     }
