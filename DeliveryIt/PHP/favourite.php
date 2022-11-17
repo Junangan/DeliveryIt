@@ -34,9 +34,16 @@
     $foodDrink = $_POST["foodDrink"];
     $price;
 
-    $CheckOwnerQuery = "SELECT * from favourite where FoodOrDrinkName='$foodDrink'";
-
-    $result = $con->query($CheckOwnerQuery);
+    try{
+      $CheckOwnerQuery = "SELECT * from favourite where FoodOrDrinkName='$foodDrink'";
+      $result = $con->query($CheckOwnerQuery);
+    }
+    catch(Exception $e){
+      $CreateFavouriteQuery= "CREATE TABLE favourite (FavouriteID integer NOT NULL AUTO_INCREMENT PRIMARY KEY,FoodOrDrinkName integer(255) NOT NULL)";
+      $con->query($CreateFavouriteQuery);
+      $CheckOwnerQuery = "SELECT * from favourite where FoodOrDrinkName='$foodDrink'";
+      $result = $con->query($CheckOwnerQuery);
+    }
         if($result->num_rows > 0){
           echo "<script>
           alert('The name of the food or drink is duplicate , please choose another food or drink');
