@@ -46,6 +46,8 @@
           <h2> Favourite List </h2>
         <?php
         $conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
+        try{
+
         $GetRestaurantQuery = "SELECT *
                 FROM ((foodanddrink
                 INNER JOIN restaurant ON restaurant.RestaurantId = foodandDrink.RestaurantId)
@@ -84,6 +86,12 @@
                           ";
                   }
                 }
+              }
+              catch(Exception $e){
+                echo "<p style='text-align:center; padding-top:2.5%;'>
+                          No any food in the list.
+                        </p>";
+              }
           ?>
         </div>
 

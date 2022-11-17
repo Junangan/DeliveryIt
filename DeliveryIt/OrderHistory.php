@@ -102,7 +102,7 @@ if(isset($_POST['submit'])){
             </div>
             <ul class = "nav navbar-nav navbar-left">
               <li class = "nav-item"><a class = "nav-link" href = "UserPage.php"> Home </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "#"> Restaurant </a></li>
+              <li class = "nav-item"><a class = "nav-link" href = "Restaurant.php"> Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "FavouriteList.php"> Favourite List </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "#"> View All Order History </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageUserProfile.php"> Manage Profile </a></li>
@@ -118,39 +118,40 @@ if(isset($_POST['submit'])){
     	<div class="row container-fluid justify-content-center">
 	      <h3>All order History</h3>
 	    </div>
-	    <div class="container">
-        <div id="allRestaurant" class="row justify-content-between">
-          <div class = "container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Restaurant Name</th>
-              <th scope="col">Food Name</th>
-              <th scope="col">Number Order</th>
-              <th scope="col">Total price</th>
-              <th scope="col">Status</th>
-              <th scope="col">Rating</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
             <?php
             //Step 3: Display result
             $con = new mysqli ('localhost', 'root', '',"DeliveryIt");
+            try{
                 $GetRestaurantQuery = "SELECT * from userorder";
                 $result = $con->query($GetRestaurantQuery);
                 if (mysqli_num_rows($result) > 0) {
                   while($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>
+                    echo "<div class='container'>
+                          <div id='allRestaurant' class='row justify-content-between'>
+                            <div class = 'container'>
+                          <table class='table'>
+                            <thead>
+                              <tr>
+                                <th scope='col'>Restaurant Name</th>
+                                <th scope='col'>Food Name</th>
+                                <th scope='col'>Number Order</th>
+                                <th scope='col'>Total price</th>
+                                <th scope='col'>Status</th>
+                                <th scope='col'>Rating</th>
+                                <th scope='col'></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                          <tr>
                             <td>{$row['RestaurantName']}</td>
                             <td>{$row['FoodName']}</td>
                             <td>{$row['FoodNumber']}</td>
                             <td>{$row['TotalPrice']}</td>
                             <td>{$row['Status']}</td>";
 
-                      if($row['Rating']==null){
+                      if($row['Rating']==null && $row['Status']!='pending'){
                         echo "<td><div class='rate' id='{$row['Rating']}'>
-                      }
                   <input type='radio' id='star5' name='rate' value='5' />
                   <label for='star5' title='text'>5 stars</label>
                   <input type='radio' id='star4' name='rate' value='4' />
@@ -171,14 +172,20 @@ if(isset($_POST['submit'])){
                                 </td>
                           </tr>";
                       }
+                      else if($row['Status']=='pending'){
+                        echo "";
+                      }
                       else{
                         echo "<td>You Rating {$row['Rating']} star</td>";
                       }
                   }
                 }
-                else {
-                  echo"<p>No history</p>";
-                }
+            }
+            catch(Exception $e){
+                echo "<p style='text-align:center; padding-top:2.5%;'>
+                          No any history
+                        </p>";
+              }
             ?>
           </tbody>
       </table>
