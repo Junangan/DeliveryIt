@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Manage Profit</title>
+		<title>DeliveryIt</title>
 	    <script type="text/javascript" src="JavaScript/script.js"></script>
 		<link rel= "stylesheet" href="CSS/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

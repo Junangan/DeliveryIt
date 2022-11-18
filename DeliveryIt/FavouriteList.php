@@ -10,6 +10,7 @@
     integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <link rel = "stylesheet" href = "/css/bootstrap.min.css">
     <link rel= "stylesheet" href="style.css">
+    <script type="text/javascript" src="JavaScript/script.js"></script>
     <script = src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "js/bootstrap.min.js"></script>
     <style type = "text/css">
@@ -46,8 +47,6 @@
           <h2> Favourite List </h2>
         <?php
         $conn = new mysqli ('localhost', 'root', '',"DeliveryIt");
-        try{
-
         $GetRestaurantQuery = "SELECT *
                 FROM ((foodanddrink
                 INNER JOIN restaurant ON restaurant.RestaurantId = foodandDrink.RestaurantId)
@@ -65,7 +64,7 @@
                           <h3 id='restaurantName'>{$row['RestaurantName']}</h3>
                         </div>
                     <div class='food border p-3 row justify-content-between align-items-center'>
-                            <img src = Picture/{$row['FoodOrDrinkImage']} height='75', width='84'>
+                            <img src = Picture/{$row['FoodOrDrinkImage']} height='68', width='68'>
                             <p class='col-2' style='font-size:20px; text-align: center; margin-bottom: 0px;'>
                               {$row['FoodOrDrinkName']}
                             </p>
@@ -79,19 +78,13 @@
                             <input type='button' id='plus' value='+' onclick='addNum({$numRow})'>
                               <input type='submit' value='Add to Cart'>
                             </form>
-                            <a href='PHP/DeleteFavourite.php?Name={$row['FoodOrDrinkName']}'>
-                            Remove from Favourite List
-                            </a>
+                            <form class='form-horizontal' action='PHP/DeleteFavourite.php?Name={$row['FoodOrDrinkName']}' method = 'post'>
+                            <input type='submit' name='Delete' value='Remove from Favourite List'>
+                            </form>
                           </div>
                           ";
                   }
                 }
-              }
-              catch(Exception $e){
-                echo "<p style='text-align:center; padding-top:2.5%;'>
-                          No any food in the list.
-                        </p>";
-              }
           ?>
         </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2022 at 09:04 AM
+-- Generation Time: Nov 18, 2022 at 10:36 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -38,8 +38,8 @@ CREATE TABLE `favourite` (
 --
 
 INSERT INTO `favourite` (`FavouriteID`, `FoodOrDrinkName`) VALUES
-(32, 'Spaghetti'),
-(33, 'Chicken');
+(36, 'Chicken'),
+(38, 'Pizza');
 
 -- --------------------------------------------------------
 
@@ -60,10 +60,9 @@ CREATE TABLE `foodanddrink` (
 --
 
 INSERT INTO `foodanddrink` (`FoodId`, `FoodOrDrinkName`, `Price`, `FoodOrDrinkImage`, `RestaurantId`) VALUES
-(36, 'Chicken', 1.00, 0x6b66632e706e67, 23),
-(39, 'Pizza', 1.00, 0x70697a7a616875742e706e67, 25),
-(44, 'Honey Chicken', 1.00, 0x6b796f63686f6e2e706e67, 30),
-(50, 'Caramel Macchiato', 1.00, 0x737461726275636b732e706e67, 35);
+(81, 'Milo', 1.00, 0x6b66632e706e67, 37),
+(82, 'Chicken', 1.00, 0x6b66632e706e67, 37),
+(83, 'Pizza', 1.00, 0x70697a7a616875742e706e67, 38);
 
 -- --------------------------------------------------------
 
@@ -88,7 +87,9 @@ INSERT INTO `owner` (`Username`, `Password`, `Fullname`, `Email`, `Phone`) VALUE
 ('Evelyn', 'evelyn', '', '', 0),
 ('Lucille', 'lucille', '', '', 0),
 ('Fong Keng Lun', 'fkl', '', '', 0),
-('Murphy', 'murphy', '', '', 0);
+('Murphy', 'murphy', '', '', 0),
+('Felix', 'felix', '', '', 0),
+('Fong Ching Lin', 'fcl', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -109,10 +110,8 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`RestaurantId`, `RestaurantName`, `ratingNumber`, `star`, `RestaurantImage`) VALUES
-(23, 'KFC', 0, 0, 0x6b66632e706e67),
-(25, 'Pizza Hut', 0, 0, 0x70697a7a616875742e706e67),
-(30, 'Kyochon', 0, 0, 0x6b796f63686f6e2e706e67),
-(35, 'Starbucks', 0, 0, 0x737461726275636b732e706e67);
+(37, 'KFC', 0, 0, 0x6b66632e706e67),
+(38, 'Pizza Hut', 0, 0, 0x70697a7a616875742e706e67);
 
 -- --------------------------------------------------------
 
@@ -134,7 +133,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`Username`, `Password`, `Fullname`, `Email`, `Phone`) VALUES
 ('Grace', 'grace', 'Grace Fong Ching Lin', 'gracefongcl@gmail.com', 132091628),
-('Evelyn', 'evelyn', 'Evelyn Fong Ching Har', 'evelynfong@hotmail.com', 123456789);
+('Evelyn', 'evelyn', 'Evelyn Fong Ching Har', 'evelynfong@hotmail.com', 123456789),
+('Lucille', 'lucille', 'Lucille Lim Swee Yong', 'lsy@gmail.com', 123661628),
+('Fong Keng Lun', 'fkl', 'Fong Keng Lun', 'fongkenglun@gmail.com', 192891628);
 
 -- --------------------------------------------------------
 
@@ -158,9 +159,11 @@ CREATE TABLE `userorder` (
 --
 
 INSERT INTO `userorder` (`OrderId`, `RestaurantName`, `FoodName`, `FoodNumber`, `TotalPrice`, `Status`, `user`, `Rating`) VALUES
-(51, 'KFC', 'Chicken', 2, 2.00, 'Complete', 'Grace', 5),
 (52, 'Pizza Hut', 'Pizza', 1, 1.00, 'Complete', 'Grace', 0),
-(53, 'KFC', 'Chicken', 1, 1.00, 'Complete', 'Grace', 0);
+(57, 'KFC', 'Chicken', 1, 1.00, 'Complete', 'Grace', 0),
+(59, 'KFC', 'Chicken', 1, 1.00, 'Complete', 'Grace', 0),
+(61, 'KFC', 'Chicken', 1, 1.00, 'Complete', 'Grace', 0),
+(63, 'KFC', 'Chicken', 1, 1.00, 'Complete', 'Grace', 0);
 
 --
 -- Indexes for dumped tables
@@ -198,25 +201,25 @@ ALTER TABLE `userorder`
 -- AUTO_INCREMENT for table `favourite`
 --
 ALTER TABLE `favourite`
-  MODIFY `FavouriteID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `FavouriteID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `foodanddrink`
 --
 ALTER TABLE `foodanddrink`
-  MODIFY `FoodId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `FoodId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `RestaurantId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `RestaurantId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `userorder`
 --
 ALTER TABLE `userorder`
-  MODIFY `OrderId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `OrderId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
