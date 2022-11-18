@@ -29,7 +29,6 @@
               <li class = "nav-item"><a class = "nav-link" href = "ManageRestaurant.php"> Manage Restaurant </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "UserOrderRecord.php"> View All User Order Record </a></li>
               <li class = "nav-item"><a class = "nav-link" href = "ManageOwnerProfile.php"> Manage Profile </a></li>
-              <li class = "nav-item"><a class = "nav-link" href = "chat.html"><img class="chat" src="Picture/chaticon.png" alt="Chat Icon" style="width:30px;height:30px;"></a></li>
               <li class = "nav-item"><a class = "nav-link" href = "MainPage.html"> Log out </a></li>
             </ul>
           </div>
@@ -43,7 +42,13 @@
       <h2> Contact </h2><br>
       <p> E-mail: b1202348@helplive.edu.my, B1901462@helplive.edu.my<br> Phone Number: 013-209 1628, 011-3738 0149</p>
       <br><br>
-
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="DeliveryItOwner"
+      agent-id="4eca5ce7-ed0d-4d69-b452-34e6ae176c83"
+      language-code="en"
+    ></df-messenger>
     <footer id = "footer" class = "clear">
       <h5> Copyright &copy; 2022 DeliveryIt. All Right Reserved. </h5>
     </footer>
