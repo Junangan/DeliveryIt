@@ -10,21 +10,7 @@
 
     $restaurantName=$_POST['restaurantName'];
     $restaurantID=$_POST['restaurantID'];
-    $folder = '../Picture/';
-
-    $Restaurantfilename = $restaurantName.'.jpg';
-    $Restaurantfiletmpname = $_FILES['restaurantImage']['tmp_name'];
-    move_uploaded_file($Restaurantfiletmpname, $folder.$Restaurantfilename);
-
-    $sql = "SELECT RestaurantImage FROM restaurant WHERE RestaurantID = $restaurantID ";
-    $result = mysqli_query($con, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-          unlink($folder.$row['RestaurantImage']);
-        }
-    }
-
-    $restaurantImage = $Restaurantfilename;
+    $restaurantImage=$_POST['restaurantImage'];
 
     $sql = "SELECT RestaurantName, RestaurantImage, FoodOrDrinkName, Price FROM restaurant INNER JOIN foodanddrink ON restaurant.RestaurantId = foodanddrink.RestaurantId";
     $sql = "SELECT * FROM restaurant";

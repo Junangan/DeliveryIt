@@ -11,20 +11,8 @@
     $foodDrink=$_POST['foodDrink'];
     $price=$_POST['price'];
     $FoodID=$_POST['foodID'];
-    $folder = '../Picture/';
+    $foodOrDrinkImage=$_POST['foodOrDrinkImage'];
 
-    $sql = "SELECT FoodOrDrinkImage,RestaurantId FROM foodandDrink WHERE FoodID = $FoodID ";
-    $result = mysqli_query($con, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $FoodOrDrinkfilename = $row['RestaurantId'].'_'.$foodDrink.'.jpg';
-            $FoodOrDrinkfiletmpname = $_FILES['foodOrDrinkImage']['tmp_name'];
-            move_uploaded_file($FoodOrDrinkfiletmpname, $folder.$FoodOrDrinkfilename);
-            $foodOrDrinkImage= $FoodOrDrinkfilename;
-
-            unlink($folder.$row['FoodOrDrinkImage']);
-        }
-    }
 
     $sql = "UPDATE foodandDrink SET FoodOrDrinkName='$foodDrink',Price= '$price', FoodOrDrinkImage='$foodOrDrinkImage' WHERE FoodID = $FoodID";
     mysqli_query($con, $sql);

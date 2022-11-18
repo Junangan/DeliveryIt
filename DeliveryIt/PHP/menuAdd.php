@@ -28,7 +28,7 @@
         $con->query($GetOrderQuery);
     }
     catch(Exception $e){
-      $CreatefoodOwnerTableQuery = "CREATE TABLE userorder(OrderId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodName VARCHAR(255)NOT NULL,FoodNumber  integer(10) NOT NULL,TotalPrice float(10) NOT NULL,Status VARCHAR(255) NOT NULL,Rating integer(1),user VARCHAR(255) NOT NULL)";
+      $CreatefoodOwnerTableQuery = "CREATE TABLE userorder(OrderId integer NOT NULL AUTO_INCREMENT PRIMARY KEY,RestaurantName VARCHAR(255) NOT NULL,FoodName VARCHAR(255)NOT NULL,FoodNumber  integer(10) NOT NULL,TotalPrice float(10) NOT NULL,Status VARCHAR(255) NOT NULL,user VARCHAR(255) NOT NULL)";
       $con->query($CreatefoodOwnerTableQuery);
     }
 

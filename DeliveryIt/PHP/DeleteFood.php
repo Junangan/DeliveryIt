@@ -8,7 +8,7 @@
     $dbname = "DeliveryIt";
     $con = new mysqli($servername, $username, $password, $dbname);
 
-    $foodID=$_POST['foodID'];
+    $foodID=$_GET['Name'];
 
     $sql="DELETE FROM foodanddrink  WHERE FoodId = $foodID";
     mysqli_query($con, $sql);

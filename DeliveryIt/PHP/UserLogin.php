@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "../MainPage.html"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "MainPage.html"> DeliveryIt </a>
             </div>
           </div>
         </nav>
@@ -71,19 +71,25 @@
         }
         else
         {
-          echo'Username not found and invalid password';
+          echo "<script>
+          alert('Username not found and invalid password');
+          window.location.href='../UserLogin.html';
+          </script>";
         }
       }
 
       else
       {
-        echo'Enter both username and password';
+        echo "<script>
+        alert('Enter both username and password');
+        window.location.href='../UserLogin.html';
+        </script>";
       }
     }
     ?>
     </div>
     <div class = "container">
-      <form action="../UserLogin.html" method = "post"><br>
+      <form action="UserLogin.html" method = "post"><br>
         <input type="submit" name="Back" value="Back">
       </form>
     </div>

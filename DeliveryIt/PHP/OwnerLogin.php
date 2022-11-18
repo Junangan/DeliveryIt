@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class = "container-fluid">
             <div class = "navbar-header">
-              <a class = "navbar-brand" href = "../MainPage.html"> DeliveryIt </a>
+              <a class = "navbar-brand" href = "MainPage.html"> DeliveryIt </a>
             </div>
           </div>
         </nav>
@@ -52,10 +52,10 @@
       $password=$_POST['password'];
 
       //using try to check the table is create or no,if no then will create the relate table
-    $GetOwnerQuery = "SELECT * from Owner";
+    $GetOwnerQuery = "SELECT * from owner";
     $result = $con->query($GetOwnerQuery);
     if(!$result){
-      $CreateOwnerTableQuery = "CREATE TABLE Owner(username VARCHAR(255) PRIMARY KEY,password VARCHAR(255) NOT NULL,Fullname VARCHAR(255) NOT NULL,email VARCHAR(255) NOT NULL,phone integer(12) NOT NULL)";
+      $CreateOwnerTableQuery = "CREATE TABLE owner(username VARCHAR(255) PRIMARY KEY,password VARCHAR(255) NOT NULL,Fullname VARCHAR(255) NOT NULL,email VARCHAR(255) NOT NULL,phone integer(12) NOT NULL)";
       $con->query($CreateOwnerTableQuery);
     }
 
@@ -71,19 +71,25 @@
         }
         else
         {
-          echo'Username not found and invalid password';
+          echo"<script>
+          alert('Username not found and invalid password');
+          window.location.href='../OwnerLogin.html';
+          </script>";
         }
       }
 
       else
       {
-        echo'Enter both username and password';
+        echo"<script>
+        alert('Enter both username and password');
+        window.location.href='../OwnerLogin.html';
+        </script>";
       }
     }
     ?>
     </div>
     <div class = "container">
-      <form action="../OwnerLogin.html" method = "post"><br>
+      <form action="OwnerLogin.html" method = "post"><br>
         <input type="submit" name="Back" value="Back">
       </form>
     </div>
