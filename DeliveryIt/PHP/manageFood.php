@@ -18,7 +18,7 @@
     mysqli_query($con, $sql);
     mysqli_close($con);
     echo "<script>
-    alert('The name of the food/drink and price has been updated');
+    alert('The name of the food/drink, price and image has been updated');
     window.location.href='../ManageRestaurant.php';
     </script>";
     ?>
