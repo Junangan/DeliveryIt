@@ -41,7 +41,7 @@
     <br><br>
     <section class="page-section" id="contact">
       <div class = "container"><br>
-        <h3> Edit Restaurant </h3>
+        <h2> Delete Restaurant </h2>
         <?php
         //Step 1: Connect to database
         $servername = "localhost";
@@ -58,7 +58,7 @@
         $result = mysqli_query($con, $sql);
         ?>
         <div class = "container">
-          <table border="1">
+          <table class = "table">
             <thead>
               <tr>
                 <th>Image</th>
@@ -76,6 +76,10 @@
                               <td><img src = Picture/{$row['RestaurantImage']} height='110', width='110'></td>
                               <td>{$row['RestaurantId']}</td>
                               <td>{$row['RestaurantName']}</td>
+                              <td><form class='form-horizontal' action='PHP/manage3.php?Name={$row['RestaurantId']}' method = 'post'>
+                              <input type='submit' class = 'btn btn-success' name='Delete' value='Delete'>
+                              </form>
+                              </td>
                             </tr>";
                   }
 
@@ -85,60 +89,7 @@
               ?>
             </tbody>
         </table>
-    </div><br><br>
-        <form class="form-horizontal" action="PHP/manage2.php" method = "post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="fullname">Restaurant ID:</label>
-            <div class="col-sm-6">
-              <select name="restaurantID" id="restaurantID" required>
-                <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "DeliveryIt";
-                $con = new mysqli($servername, $username, $password, $dbname);
-                if (!$con) {
-                 die("Could not connect to database");
-                 }
-
-                $sql = "SELECT * FROM restaurant WHERE RestaurantId > 0";
-                $result = mysqli_query($con, $sql);
-                ?>
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                  while($row = mysqli_fetch_assoc($result)) {
-                    echo
-                    "<option>{$row['RestaurantId']}</option>";
-                  }
-                }
-                else {
-                  echo "";
-                }
-                ?>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-md-2" for="restaurantName">Restaurant Name:</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="restaurantName" placeholder="Enter restaurant name" name="restaurantName" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-4" for="restaurantImage">Upload an image for the restaurant:</label>
-            <div class="col-sm-6">
-              <input type="file" id="restaurantImage" name="restaurantImage" required onchange="readURL(this,'restaurant');">
-              <img id="restaurant" src="#" alt="your image" style="display: none"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-4 col-md-10">
-              <input type="submit" class = "btn btn-success" name="Edit" value="Edit">
-            </div>
-          </div>
-        </form>
-        <br><br>
+    </div><br><br><br><br>
     </section>
     <div>
       <footer id = "footer" class = "clear">

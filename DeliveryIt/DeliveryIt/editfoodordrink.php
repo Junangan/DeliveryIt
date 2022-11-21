@@ -88,7 +88,7 @@
           </tbody>
       </table>
     </div><br><br>
-        <form class="form-horizontal" action="PHP/manageFood.php" method = "post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="PHP/manageFood.php" method = "post">
           <div class="form-group">
             <label class="control-label col-sm-2" for="fullname">Food/Drink ID:</label>
             <div class="col-sm-6">

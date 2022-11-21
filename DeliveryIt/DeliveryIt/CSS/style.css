@@ -1,0 +1,319 @@
+.vertical-space {height: 25px;}
+
+.button-rounded {border-radius: 5px;}
+
+.submitBar{margin-top: 25px;}
+
+#tripDisplay {
+      width: 100%;
+      height: 700px;
+}
+
+.tripDisplay {
+  background-color: rgb(226, 220, 205);
+  width: 100%;
+}
+
+#Managerbody , #Volunteerbody,  #OrganizeTripBody{
+  background-color: #B8FF99;
+  background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
+}
+
+.header{
+  margin: auto;
+  padding-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 36px;
+}
+
+#loginForm{
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-left: 15%;
+  padding-right: 15%;
+  background-color: #C2F9F6;
+  box-shadow: 0px 0px 50px #8EF6F0;
+}
+
+.form{
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: #C2F9F6;
+  box-shadow: 0px 0px 50px #8EF6F0;
+}
+
+.form label, #loginForm label,#manageProfileForm label{
+  font-size: 20px;
+  margin: 0px;
+}
+
+.form select,#manageProfileForm select{
+  font-size: 20px;
+}
+
+.form input, #loginForm input,#manageProfileForm input{
+  font-size: 20px;
+}
+
+.button{
+  padding-top: 5%;
+}
+
+.button .btn{
+  border: 1px solid #666666;
+  border-radius: 0px;
+  font-family: "Open Sans";
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.button .link{
+  text-decoration: underline;
+  padding-left: 10px;
+}
+
+.back{
+  padding-top: 50px;
+}
+
+.back .btn{
+  border: 1px solid #666666;
+  border-radius: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  transform: 0.3s;
+}
+
+.back .btn:hover{
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
+  transform: 0.3s;
+}
+
+.navTitle {
+  padding-left: 30px;
+  font-weight: 700;
+  font-family: "Times New Roman";
+  font-size: 26px;
+  color: black;
+  text-decoration: none;
+}
+
+.navTitle:hover{
+  color: black;
+  text-decoration: none;
+}
+
+
+#DocumentUpload {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 20px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 2px groove;
+}
+
+.text{
+  font-size: 48px;
+  width: 100%;
+  font-weight: 100;
+}
+
+.link{
+  margin-top: 10%;
+}
+
+.link .btn{
+  border-radius: 0px;
+  border: 1px solid black;
+  width: 100%;
+  padding: 30px 0;
+  height: 100px;
+  font-size: 26px;
+}
+
+#managerMain,#volunteerMain{
+  margin-top: 5%;
+}
+
+.copyright{
+  color: grey;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+.restaurantLink{
+  text-decoration: none;
+  margin-top: 25px;
+  width: 45%;
+  height: 75px;
+  border: 1px solid black;
+  display: inline-block;
+  height: 75px;
+  transition: 0.3s;
+}
+
+.restaurantName{
+  height:75px;
+  padding-top:22.5px;
+  padding-left: 10px;
+  text-align:center;
+  display: inline-block;
+  color:blue;
+  font-size:20px;
+  color:black;
+}
+
+.restaurantLink:hover{
+  text-decoration: none;
+  color: black;
+  border: 0px solid #DCDCDC;
+  background-color: #DCDCDC;
+}
+
+
+#restaurantName{
+  display: inline-block;
+  position: relative;
+  top: 10px;
+}
+
+
+.food{
+  margin-top: 20px;
+}
+
+.food p{
+  margin-left: 20px;
+}
+
+#cartRestaurant{
+  font-size:  24px;
+  padding: 20px;
+  text-decoration:  underline;  
+}
+
+.comfirmBuy{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+#totalPrice{
+    margin-left:  10px;
+    margin-top:   15px;
+}
+
+.comfirmBuy button{
+  margin-right:   5%;
+  font-size:  20px;
+}
+
+.dropbtn {
+  background-color: white;
+  width: 100%;
+  color: black;
+  padding: 2px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #E9E9E9;
+  transition: 0.3s;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #E9E9E9;
+}
+
+.dropdown {
+  width: 400px;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  width: 100%;
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+}
+
+.dropdown-content a:hover {background-color: #D4D4D4}
+
+.cartRestaurant{
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.address{
+  margin: 0px 10px 0px 10px;
+}
+
+.show {display:block;}
+
+.hide {display: none;}
+
+.CheckOutbutton{
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+  font-size: 24px;
+  text-align: center;
+  transition: 0.3s;
+  color: black;
+}
+
+
+.CheckOutbutton:hover{
+  text-decoration: none;
+  color: black;
+  border: 0px solid #DCDCDC;
+  background-color: #DCDCDC;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+table{
+  width: 100%;
+}
+
+tbody{
+  text-align: center;
+  padding: 15px;
+}
+
+tr, th, td{
+  text-align: center;
+  height: 60px;
+  width: 1000px;
+}
